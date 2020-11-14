@@ -1,31 +1,28 @@
 import views from "../../features/views";
-// import { COUNTER_PATH } from "./paths";
 
+//ADD YOUR COMPONENT'S PATH TO THE LIST! (export required)
 export const HOMEPAGE_PATH = "/";
 export const COUNTER_PATH = "/counter";
 export const STYLESHEET_PATH = "/stylesheet";
 export const LOGIN_PATH = "/login";
 
-
+//ADD YOUR COMPONENT OBJECT BELOW AND ADD YOUR COMPONENT OBJECT IDENTIFIER TO THE ARRAY AT THE BOTTOM
+// component & path are REQUIRED
+// add isPrivate=true if your path should be private!
+// add isExact=true if your path should be exact!
 export const COUNTER = {
 	component: views.Counter,
 	path: COUNTER_PATH,
-	isPrivate: false,
-	isExact: false,
 };
 
 export const STYLESHEET = {
 	component: views.Stylesheet,
 	path: STYLESHEET_PATH,
-	isPrivate: false,
-	isExact: false,
 }
 
 export const LOGIN = {
 	component: views.LoginPage,
 	path: LOGIN_PATH,
-	isPrivate: false,
-	isExact: false,
 }
 
 export const HOMEPAGE = {
