@@ -3,6 +3,16 @@ import React from "react";
 import Form from "../shared/Form";
 import { useDispatch } from "react-redux";
 import { login } from "./loginSlice";
+import layout from "../layout";
+import styled from "styled-components";
+const { Container, Heading } = layout;
+
+const FormContainer = styled(Container)`
+	background-color: var(--pDarker);
+	width: 90%;
+	border-radius: 20px;
+	text-align: center;
+`;
 
 const loginValues = [
 	{
@@ -27,7 +37,10 @@ const LoginForm = (props) => {
 		dispatch(login(values));
 	}
 	return (
-		<Form fields={loginValues} handleSubmit={handleSubmit} />
+		<FormContainer>
+			<Heading h3>Login</Heading>
+			<Form fields={loginValues} handleSubmit={handleSubmit} />
+		</FormContainer>
 	)
 }
 export default LoginForm;

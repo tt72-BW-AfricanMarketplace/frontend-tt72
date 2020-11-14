@@ -1,6 +1,15 @@
 import React from "react";
 import useForm from "../../hooks/useForm";
 import Input from "./Input";
+import styled from "styled-components";
+import layout from "../layout";
+const { Button } = layout;
+
+const StyledForm = styled.form`
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+`;
 
 const Form = ({ fields, handleSubmit }) => {
 	let initState = {};
@@ -11,23 +20,23 @@ const Form = ({ fields, handleSubmit }) => {
 		handleSubmit(values);
 		clearForm();
 	}
-return (
-	<form onSubmit={handleSubmitLocal}>
-		{
-		fields.map(field => {
-			const { name, type, placeholder, className } = field;
-			return (
-				<Input 
-				name={name} 
-				type={type ? type : "text"} 
-				placeholder={placeholder ? placeholder : name} 
-				className={className ? className : ""} 
-				value={values[name]} 
-				onChange={handleChanges} />);
-		})
-	}
-		<button>Submit</button>
-	</form>
+	return (
+		<StyledForm onSubmit={handleSubmitLocal}>
+			{
+				fields.map(field => {
+					const { name, type, placeholder, className } = field;
+					return (
+						<Input
+							name={name}
+							type={type ? type : "text"}
+							placeholder={placeholder ? placeholder : name}
+							className={className ? className : ""}
+							value={values[name]}
+							onChange={handleChanges} />);
+				})
+			}
+			<Button secondary>Submit</Button>
+		</StyledForm>
 	);
 };
 

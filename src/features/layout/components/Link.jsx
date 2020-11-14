@@ -21,12 +21,15 @@ export const clickerStyles = css`
 	font-size: 1.6rem;
 	outline: none;
 	border: none;
+	border-radius: 10px;
 	cursor: pointer;
 	&:hover {
+		transition-duration: 0;
 		cursor: pointer;
 		background-color: var(--tDark);
 	}
 	&:active {
+		transition-duration: 0;
 		background-color: var(--tDarker);
 	}
 `;
@@ -34,10 +37,12 @@ export const secondaryClickerStyles = css`
 	background-color: var(--pLight);
 	color: var(--pText);
 	&:hover {
+		transition-duration: 0;
 		cursor: pointer;
 		background-color: var(--pBase);
 	}
 	&:active {
+		transition-duration: 0;
 		background-color: var(--pDark);
 	}
 `;
