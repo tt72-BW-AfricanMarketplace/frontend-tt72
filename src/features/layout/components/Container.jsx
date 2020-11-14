@@ -7,7 +7,9 @@ import styled from 'styled-components'
  */
 const Container = styled.div`
 	box-sizing: border-box;
-	max-width: 98vw;
+	background-color: var(--pLighter);
+	max-width: 100vw;
+	margin: 0 auto;
     padding-left: ${props => {
 		if (props.full) return 0
 		return 'calc((100vw - 960px) / 2)'

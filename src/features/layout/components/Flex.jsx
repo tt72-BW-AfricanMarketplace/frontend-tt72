@@ -14,6 +14,7 @@ const Flex = styled.div`
 		else if (props.justifyAround) return 'space-around'
 		else if (props.justifyBetween) return 'space-between'
 		else if (props.justifyEnd) return 'flex-end'
+		else if (props.justifyEven) return "space-evenly"
 		return 'flex-start'
 	}};
     align-items: ${props => {
@@ -34,7 +35,7 @@ const Flex = styled.div`
 		return 'stretch'
 	}};
     flex-direction: ${props => (props.column ? 'column' : 'row')};
-`
+`;
 
 export const Column = styled.div`
     width: ${props => {
