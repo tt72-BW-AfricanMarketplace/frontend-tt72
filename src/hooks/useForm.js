@@ -9,8 +9,7 @@ export const useForm = (initInput) => {
 		setInput({ ...input, [name]: value });
 	};
 
-	const clearForm = e => {
-		// e.preventDefault();
+	const clearForm = () => {
 		setInput(initInput);
 	};
 
