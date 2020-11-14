@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import theme from "styled-theming";
 import { useTheme } from "../../app/theme/ThemeContext";
-// import { Button } from "../../common/components";
-// import { createClickerStyles } from "../../app/theme/theme";
 import layout from "../layout";
 import moonDark from "../../assets/moonFilled.svg";
 import moonLight from "../../assets/moon.svg";

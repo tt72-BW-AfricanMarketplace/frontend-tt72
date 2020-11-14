@@ -17,6 +17,7 @@ const buildPrimaryPallette = (arr) => {
 		--pLight: ${hex[4]};
 		--pLighter: ${hex[5]};
 		--pLightest: ${hex[6]};
+		transition: all 0.4s linear;
 	`;
 };
 const buildThemePallette = (arr) => {
@@ -27,6 +28,7 @@ const buildThemePallette = (arr) => {
 		--tBase: ${hex[2]};
 		--tLight: ${hex[3]};
 		--tLighter: ${hex[4]};
+		transition: all 0.4s linear;
 	`;
 }
 
@@ -54,6 +56,13 @@ export const rootVars = theme("mode", {
 			--nPrimaryAlt: #3b3a39;
 			--nPrimary: #323130;
 			--nDark: #201f1e;
+			${'' /* transition: all 0.4s linear;
+			* {
+			transition: all 0.4s linear;
+			} */}
+			*, *::before, *::after {
+				transition: all 0.4s linear;
+			}
 	`,
 	light: css`
 			${lightPrimary};
@@ -71,46 +80,12 @@ export const rootVars = theme("mode", {
 			--nPrimaryAlt: #3b3a39;
 			--nPrimary: #323130;
 			--nDark: #201f1e;
+			${'' /* transition: all 0.4s linear;
+			* {
+				transition: all 0.4s linear;
+			} */}
+			*, *::before, *::after {
+				transition: all 0.4s linear;
+			}
 	`,
 });
-
-export const createClickerStyles = (background, color, backgroundHover = color, colorHover = background) => {
-	return css`
-		background-color: ${background};
-		color: ${color};
-		transition: all 0.4s ease;
-		&:hover {
-			cursor: pointer;
-			background-color: ${backgroundHover};
-			color: ${colorHover};
-			transition: all 0.4s ease;
-		}
-	`;
-}
-
-export const createBackgroundStyles = (darkBackground, darkColor, lightBackground, lightColor) => {
-	return {
-		dark: css`
-			background-color: ${darkBackground};
-			color: ${darkColor};
-		`,
-		light: css`
-			background-color: ${lightBackground};
-			color: ${lightColor};
-		`,
-	}
-}
-
-export const createModeStyles = (cssDark, cssLight) => {
-	return {
-		dark: cssDark,
-		light: cssLight,
-	}
-}
-
-export const createGeneralStyles = (customCss) => {
-	return {
-		dark: customCss,
-		light: customCss,
-	};
-};
