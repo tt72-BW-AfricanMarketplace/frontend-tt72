@@ -3,11 +3,13 @@
 import Stylesheet from "../stylesheet/Stylesheet";
 import HomePage from "../homepage/HomePage";
 import LoginPage from "../login/LoginPage";
+import PortalPage from "../info-portal/PortalPage";
 
 
 const views = {
 	HomePage,
 	Stylesheet,
 	LoginPage,
+	PortalPage,
 }
 export default views;
