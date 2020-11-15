@@ -3,13 +3,11 @@ import ThemeToggler from "./ThemeToggler";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../login/loginSlice";
-
+import PATHS from "../../app/routes/paths";
+// import { PATHS } from "../../app/routes/routes";
 import layout from "../layout";
 const { Heading, Link, Button } = layout;
-
-// const headerStyles = theme("mode",
-// 	createBackgroundStyles(prussianblue, honeydew, "black", honeydew)
-// );
+const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH } = PATHS;
 
 const StyledHeader = styled.header`
 	width: 100vw;
@@ -48,10 +46,11 @@ const Header = props => {
 				</div>
 				<div>
 					<nav>
-						<Link to="/">Home</Link>
-						<Link secondary to="/stylesheet">Stylesheet</Link>
+						<Link to={HOMEPAGE_PATH}>Home</Link>
+						<Link secondary to={STYLESHEET_PATH}>Stylesheet</Link>
+						<Link to={PORTAL_PATH}>Info Portal</Link>
 						{!isLoggedIn ?
-							<Link to="/login">Login</Link>
+							<Link to={LOGIN_PATH}>Login</Link>
 							: <Button onClick={handleLogout}>Logout</Button>
 						}
 					</nav>
