@@ -7,8 +7,9 @@ import styled from 'styled-components'
  */
 const Container = styled.div`
 	box-sizing: border-box;
-	background-color: var(--pLighter);
+	background-color: transparent;
 	max-width: 100vw;
+	width: 100%;
 	margin: 0 auto;
     padding-left: ${props => {
 		if (props.full) return 0
