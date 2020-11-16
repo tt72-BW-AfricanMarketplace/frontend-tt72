@@ -4,7 +4,7 @@ import Header from "../shared/Header";
 import PATHS from "../../app/routes/paths";
 import layout from "../layout";
 const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH } = PATHS;
-const { Heading, Container, Flex, Link, Button } = layout;
+const { Heading, Container, Flex, Link } = layout;
 
 const HomeContainer = styled(Container)`
 	height: 80vh;

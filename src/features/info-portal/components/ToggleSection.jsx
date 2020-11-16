@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 // import RadioGroup from "./RadioGroup";
 import layout from "../../layout";
-const { Heading, Container } = layout;
+const { Heading } = layout;
 
 export const HideAndSeek = styled.div`
 	display: ${pr => pr.shown ? "block" : "none"};

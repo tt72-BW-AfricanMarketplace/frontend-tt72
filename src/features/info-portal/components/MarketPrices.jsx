@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import ToggleSection, { HideAndSeek } from "./ToggleSection";
 
 const MarketPrices = props => {
