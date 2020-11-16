@@ -15,11 +15,16 @@ const StyledInput = styled.input`
 	margin: 1rem;
 `;
 
-const Input = ({ name, type, placeholder, onChange, className, value, children, label, ...props }) => {
+const Input = ({ name, type, placeholder, onChange, className, value, children, label, readOnly, ...props }) => {
+	// const readOnly = readonly || false;
 	return (
 		<>
 			<label htmlFor={name}>{label}</label>
-			<StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} {...props} />
+			{
+				readOnly === true
+					? <StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} readonly {...props} />
+					: <StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} {...props} />
+			}
 		</>
 	)
 };
@@ -27,6 +32,7 @@ const Input = ({ name, type, placeholder, onChange, className, value, children, 
 Input.defaultProps = {
 	type: "text",
 	className: "",
+	readOnly: false,
 };
 Input.propTypes = {
 	name: PropTypes.string.isRequired,
@@ -34,6 +40,7 @@ Input.propTypes = {
 	placeholder: PropTypes.string.isRequired,
 	className: PropTypes.string,
 	value: PropTypes.any,
+	readOnly: PropTypes.bool,
 	onChange: PropTypes.func.isRequired,
 };
 

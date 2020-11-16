@@ -4,6 +4,10 @@ import styled from "styled-components";
 import layout from "../../layout";
 const { Heading, Container } = layout;
 
+export const HideAndSeek = styled.div`
+	display: ${pr => pr.shown ? "block" : "none"};
+`;
+
 
 const SFieldset = styled.fieldset`
 	display: inline-flex;
@@ -32,6 +36,13 @@ const RadioGroup = ({ groupName, fields, handler }) => {
 		handler(name, value);
 	};
 
+	const formatFieldName = (str) => {
+		const toReturn = str.split("-").join(" ").charAt(0).toUpperCase()
+			+ str.slice(1).split("-").join(" ")
+			|| str;
+		return toReturn;
+	}
+
 	return (
 		<SFieldset id={groupName}>
 			{
@@ -39,7 +50,7 @@ const RadioGroup = ({ groupName, fields, handler }) => {
 					return (
 						<div className="radio-opt" key={groupName + "-" + field}>
 							<input type="radio" name={groupName} id={field} value={field} checked={selected === field} onClick={handleClick} />
-							<label htmlFor={field}>{field}</label>
+							<label htmlFor={field}>{formatFieldName(field)}</label>
 						</div>
 					);
 				})

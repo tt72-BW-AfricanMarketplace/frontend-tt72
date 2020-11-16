@@ -27,12 +27,16 @@ const PortalPage = props => {
 		});
 	};
 
+	const handleSubmit = (evt) => {
+		evt.preventDefault();
+	}
+
 	return (
 		<Page>
 			<Header />
 			<Heading h1>Info Portal Page</Heading>
 			<Heading h5>Welcome to the Sauti portal — helping you trade legally, safely, and profitably across borders.</Heading>
-			<form>
+			<form onSubmit={handleSubmit}>
 				<ToggleSection
 					shown={true}
 					sectionTitle="Please select a language"
