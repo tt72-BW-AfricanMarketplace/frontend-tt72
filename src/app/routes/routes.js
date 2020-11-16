@@ -2,7 +2,7 @@ import views from "../../features/views";
 import PATHS from "./paths";
 
 //ADD YOUR COMPONENT'S PATH to `paths.js` and add the PATH_NAME in the de-structured statement below
-const { STYLESHEET_PATH, PORTAL_PATH, HOMEPAGE_PATH, LOGIN_PATH } = PATHS;
+const { STYLESHEET_PATH, PORTAL_PATH, HOMEPAGE_PATH, LOGIN_PATH, SIGNUP_PATH } = PATHS;
 
 //ADD YOUR COMPONENT OBJECT BELOW AND ADD YOUR COMPONENT OBJECT IDENTIFIER TO THE ARRAY AT THE BOTTOM
 // component & path are REQUIRED
@@ -32,6 +32,11 @@ export const HOMEPAGE = {
 	isExact: true,
 };
 
+export const SIGNUP = {
+	component: views.SignupPage,
+	path: SIGNUP_PATH,
+};
+
 //NOTE: HOMEPAGE MUST BE LAST BECAUSE OF ROUTE PATH
-const ROUTES = [STYLESHEET, LOGIN, INFO_PORTAL, HOMEPAGE];
+const ROUTES = [STYLESHEET, LOGIN, INFO_PORTAL, SIGNUP, HOMEPAGE];
 export default ROUTES;
