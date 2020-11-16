@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../shared/Header";
 // import RadioGroup from "./components/RadioGroup";
 import MarketPrices from "./components/MarketPrices";
+import ExchangeRates from "./components/ExchangeRates";
 import ToggleSection from "./components/ToggleSection";
 import layout from "../layout";
 const { Heading } = layout;
@@ -47,6 +48,7 @@ const PortalPage = props => {
 					handler={handler}
 				/>
 				<MarketPrices values={values} handler={handler} />
+				<ExchangeRates values={values} handler={handler} />
 			</form>
 		</Page>
 	);
