@@ -24,9 +24,11 @@ const Opt = ({ name }) => {
 const ExchangeRates = props => {
 	const [exchange, setExchange] = useState({ base: "USD", compare: "KES", base_val: 1, });
 	const [compVal, setCompVal] = useState(0);
+	// const CONVERSIONS = getRates()
+	// console.log(CONVERSIONS);
 	// const res = getRates();
 	// const CONVERSION_RATES = res.rates;
-	const { values } = props;
+	// const { values } = props;
 
 	const handleSelect = (evt) => {
 		evt.preventDefault();
@@ -34,10 +36,6 @@ const ExchangeRates = props => {
 		setExchange({
 			...exchange, [name]: value
 		})
-	}
-
-	const handleSubmit = (evt) => {
-		evt.preventDefault();
 	}
 
 	const handleInputChange = (evt) => {
@@ -64,33 +62,31 @@ const ExchangeRates = props => {
 
 	return (
 		<>
-			<SExchange shown={values.category === "exchange-rates"}>
+			<SExchange shown={true}>
 				<Heading h4>Please select currencies to compare</Heading>
-				<form onSubmit={handleSubmit}>
-					<div>
-						<select name="base" id="base" onChange={handleSelect}>
-							<Opt selected name="USD" />
-							<Opt name="KES" />
-							<Opt name="UGX" />
-							<Opt name="TZS" />
-							<Opt name="KTB" />
-							<Opt name="ETB" />
-							<Opt name="RWF" />
-						</select>
-						<Input type="number" name="base_val" placeholder={`amount of ${exchange.base}`} className="base-val" value={exchange.base_val} onChange={handleInputChange} />
-					</div>
-					<div>
-						<select name="compare" id="compare" onChange={handleSelect}>
-							<Opt selected name="KES" />
-							<Opt name="USD" />
-							<Opt name="UGX" />
-							<Opt name="TZS" />
-							<Opt name="RWF" />
-							<Opt name="ETB" />
-						</select>
-						<Input type="number" name="comp_val" className="comp-val" value={compVal} />
-					</div>
-				</form>
+				<div>
+					<select name="base" id="base" onChange={handleSelect}>
+						<Opt selected name="USD" />
+						<Opt name="KES" />
+						<Opt name="UGX" />
+						<Opt name="TZS" />
+						<Opt name="KTB" />
+						<Opt name="ETB" />
+						<Opt name="RWF" />
+					</select>
+					<Input type="number" name="base_val" placeholder={`amount of ${exchange.base}`} className="base-val" value={exchange.base_val} onChange={handleInputChange} />
+				</div>
+				<div>
+					<select name="compare" id="compare" onChange={handleSelect}>
+						<Opt selected name="KES" />
+						<Opt name="USD" />
+						<Opt name="UGX" />
+						<Opt name="TZS" />
+						<Opt name="RWF" />
+						<Opt name="ETB" />
+					</select>
+					<Input type="number" name="comp_val" className="comp-val" value={compVal} readOnly={true} />
+				</div>
 			</SExchange>
 		</>
 	);

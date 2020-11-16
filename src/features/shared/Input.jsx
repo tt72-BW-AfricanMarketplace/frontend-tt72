@@ -22,7 +22,7 @@ const Input = ({ name, type, placeholder, onChange, className, value, children, 
 			<label htmlFor={name}>{label}</label>
 			{
 				readOnly === true
-					? <StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} readonly {...props} />
+					? <StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} readOnly={true} {...props} />
 					: <StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} {...props} />
 			}
 		</>
@@ -37,11 +37,11 @@ Input.defaultProps = {
 Input.propTypes = {
 	name: PropTypes.string.isRequired,
 	type: PropTypes.oneOf(["text", "number", "password", "email"]),
-	placeholder: PropTypes.string.isRequired,
+	placeholder: PropTypes.string,
 	className: PropTypes.string,
 	value: PropTypes.any,
 	readOnly: PropTypes.bool,
-	onChange: PropTypes.func.isRequired,
+	onChange: PropTypes.func,
 };
 
 export default Input;

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import RadioGroup from "./RadioGroup";
 import layout from "../../layout";
 const { Heading } = layout;
 
@@ -49,7 +48,7 @@ const RadioGroup = ({ groupName, fields, handler }) => {
 				fields.map(field => {
 					return (
 						<div className="radio-opt" key={groupName + "-" + field}>
-							<input type="radio" name={groupName} id={field} value={field} checked={selected === field} onClick={handleClick} />
+							<input type="radio" name={groupName} id={field} value={field} checked={selected === field} onChange={handleClick} />
 							<label htmlFor={field}>{formatFieldName(field)}</label>
 						</div>
 					);

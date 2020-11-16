@@ -5,7 +5,7 @@ const TradeInfo = props => {
 	const { values } = props;
 	const TRADE_INFO_STAGES = [
 		{
-			shown: (values.category === "trade-info"),
+			shown: (true),
 			sectionTitle: "Please select a category",
 			groupName: "trade_info_category",
 			fields: ["border-procedures", "required-documents", "border-agencies", "tax-collector", "regulated-goods"],
@@ -50,11 +50,12 @@ const TradeInfo = props => {
 
 	return (
 		<>
-			<HideAndSeek shown={values.category === "trade-info"}>
+			<HideAndSeek shown={true}>
 				{
 					TRADE_INFO_STAGES.map(stage => {
 						const { shown, sectionTitle, groupName, fields } = stage;
 						return <ToggleSection
+							key={`${sectionTitle}_${groupName}`}
 							shown={shown}
 							sectionTitle={sectionTitle}
 							groupName={groupName}
