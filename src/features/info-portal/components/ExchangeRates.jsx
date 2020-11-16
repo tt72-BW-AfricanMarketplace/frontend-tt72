@@ -3,6 +3,8 @@ import styled from "styled-components";
 // import ToggleSection from "./ToggleSection";
 import layout from "../../layout";
 import Input from "../../shared/Input";
+// import { getRates } from "../../../env/api/currencyClient";
+
 const { Heading } = layout;
 
 const SExchange = styled.div`
@@ -22,6 +24,8 @@ const Opt = ({ name }) => {
 const ExchangeRates = props => {
 	const [exchange, setExchange] = useState({ base: "USD", compare: "KES", base_val: 1, });
 	const [compVal, setCompVal] = useState(0);
+	// const res = getRates();
+	// const CONVERSION_RATES = res.rates;
 	const { values } = props;
 
 	const handleSelect = (evt) => {
@@ -44,12 +48,12 @@ const ExchangeRates = props => {
 
 	useEffect(() => {
 		const CONVERSION_RATES = {
-			KES: 109.20,
-			UGX: 3689.69,
-			TZS: 2324.5,
-			RWF: 987.50,
-			ETB: 37.8,
-			USD: 1,
+			"USD": "1.0",
+			"KES": "109.213333",
+			"UGX": "3696.82168",
+			"TZS": "2320.123553",
+			"RWF": "988.13928",
+			"ETB": "37.75"
 		};
 		setCompVal(
 			((exchange.base_val / CONVERSION_RATES[exchange.base])
