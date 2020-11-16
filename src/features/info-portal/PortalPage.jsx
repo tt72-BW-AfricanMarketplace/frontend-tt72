@@ -4,6 +4,7 @@ import Header from "../shared/Header";
 // import RadioGroup from "./components/RadioGroup";
 import MarketPrices from "./components/MarketPrices";
 import ExchangeRates from "./components/ExchangeRates";
+import TradeInfo from "./components/TradeInfo";
 import ToggleSection from "./components/ToggleSection";
 import layout from "../layout";
 const { Heading } = layout;
@@ -53,6 +54,7 @@ const PortalPage = props => {
 				/>
 				<MarketPrices values={values} handler={handler} />
 				<ExchangeRates values={values} handler={handler} />
+				<TradeInfo values={values} handler={handler} />
 			</form>
 		</Page>
 	);

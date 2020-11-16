@@ -22,7 +22,7 @@ const Opt = ({ name }) => {
 const ExchangeRates = props => {
 	const [exchange, setExchange] = useState({ base: "USD", compare: "KES", base_val: 1, });
 	const [compVal, setCompVal] = useState(0);
-	const { values, handler } = props;
+	const { values } = props;
 
 	const handleSelect = (evt) => {
 		evt.preventDefault();
