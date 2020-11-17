@@ -26,8 +26,8 @@ export const doggySlice = createSlice({
 	extraReducers: {
 		[fetchRandomDog.fulfilled]: (state, action) => {
 			dogAdapter.upsertMany(state, action.payload);
-		}
-	}
+		},
+	},
 });
 
 export const {
