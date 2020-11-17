@@ -76,7 +76,7 @@ export const ownerProductReducer = (state = initialState, action) => {
                 error: action.payload
             }
         default:
-            console.log('state from reducer', state)
+            // console.log('state from reducer', state)
             return state;
     }
 }
