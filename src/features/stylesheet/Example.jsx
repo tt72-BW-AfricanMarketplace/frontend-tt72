@@ -1,6 +1,6 @@
 import React from "react";
 import faker from 'faker'
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import layout from "../layout";
 const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
 

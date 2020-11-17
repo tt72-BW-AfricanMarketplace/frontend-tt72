@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import RadioGroup from "./RadioGroup";
 import layout from "../../layout";
-const { Heading, Container } = layout;
+const { Heading } = layout;
+
+export const HideAndSeek = styled.div`
+	display: ${pr => pr.shown ? "block" : "none"};
+`;
 
 
 const SFieldset = styled.fieldset`
@@ -29,8 +32,15 @@ const RadioGroup = ({ groupName, fields, handler }) => {
 	const handleClick = (evt) => {
 		const { name, value } = evt.target;
 		setSelected(value);
-		handler(name, value);
+		handler(evt);
 	};
+
+	const formatFieldName = (str) => {
+		const toReturn = str.split("-").join(" ").charAt(0).toUpperCase()
+			+ str.slice(1).split("-").join(" ")
+			|| str;
+		return toReturn;
+	}
 
 	return (
 		<SFieldset id={groupName}>
@@ -38,8 +48,8 @@ const RadioGroup = ({ groupName, fields, handler }) => {
 				fields.map(field => {
 					return (
 						<div className="radio-opt" key={groupName + "-" + field}>
-							<input type="radio" name={groupName} id={field} value={field} checked={selected === field} onClick={handleClick} />
-							<label htmlFor={field}>{field}</label>
+							<input type="radio" name={groupName} id={field} value={field} checked={selected === field} onChange={handleClick} />
+							<label htmlFor={field}>{formatFieldName(field)}</label>
 						</div>
 					);
 				})
