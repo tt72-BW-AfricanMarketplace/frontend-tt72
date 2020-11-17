@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
-// import RadioGroup from "./components/RadioGroup";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import MarketPrices from "./components/MarketPrices";
 import ExchangeRates from "./components/ExchangeRates";
 import TradeInfo from "./components/TradeInfo";
-// import ToggleSection from "./components/ToggleSection";
+import ReportIncident from "./components/ReportIncident";
 import layout from "../layout";
 const { Heading } = layout;
 
@@ -32,7 +31,6 @@ const Nav = styled.nav`
 		display: block;
 		color: var(--pText);
 		font-size: 2rem;
-		/* height: 100%; */
 		text-decoration: none;
 	}
 `;
@@ -46,10 +44,6 @@ const PortalPage = props => {
 		});
 	};
 
-	// const handleSubmit = (evt) => {
-	// 	evt.preventDefault();
-	// }
-
 	return (
 		<Router>
 			<Page>
@@ -62,29 +56,10 @@ const PortalPage = props => {
 					<Link to="/info-portal/exchange-rates">Exchange Rates</Link>
 					<Link to="/info-portal/report-incident">Report Incident</Link>
 				</Nav>
-				{/* <form onSubmit={handleSubmit}> */}
-				{/* <ToggleSection
-					shown={true}
-					sectionTitle="Please select a language"
-					groupName="language"
-					fields={["english", "swahili", "luganda"]}
-					handler={handler}
-				/> */}
-				{/* <ToggleSection
-						shown={true}
-						sectionTitle="Please select a category"
-						groupName="category"
-						fields={["market-prices", "exchange-rates", "trade-info", "covid-19-info", "report-border-experience", "weather", "help/about", "surveys"]}
-						handler={handler}
-					/> */}
-				{/* <MarketPrices values={values} handler={handler} />
-					<ExchangeRates values={values} handler={handler} />
-					<TradeInfo values={values} handler={handler} /> */}
-				{/* </form> */}
 			</Page>
 
 			<Switch>
-				<Route path="/info-portal/market-prices/:step">
+				<Route path="/info-portal/market-prices">
 					<MarketPrices values={values} handler={handler} />
 				</Route>
 				<Route path="/info-portal/exchange-rates">
@@ -94,7 +69,7 @@ const PortalPage = props => {
 					<TradeInfo values={values} handler={handler} />
 				</Route>
 				<Route path="/info-portal/report-incident">
-					<div>Report incident</div>
+					<ReportIncident />
 				</Route>
 			</Switch>
 		</Router>

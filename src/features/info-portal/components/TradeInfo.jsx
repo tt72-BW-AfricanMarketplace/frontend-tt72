@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import ToggleSection, { HideAndSeek } from "./ToggleSection";
 
 const TradeInfo = props => {
-	const { values } = props;
+	const [values, setValues] = useState({});
+
+	const handler = (evt) => {
+		const { name, value } = evt.target;
+		setValues({ ...values, [name]: value });
+	}
+
 	const TRADE_INFO_STAGES = [
 		{
 			shown: (true),
@@ -60,7 +66,7 @@ const TradeInfo = props => {
 							sectionTitle={sectionTitle}
 							groupName={groupName}
 							fields={fields}
-							handler={props.handler}
+							handler={handler}
 							children={stage.children ? stage.children : null}
 						/>
 					})
