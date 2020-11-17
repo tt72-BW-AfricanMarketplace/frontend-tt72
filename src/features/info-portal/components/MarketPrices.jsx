@@ -5,13 +5,12 @@ import { MemoryRouter, withRouter, BrowserRouter as Router, useRouteMatch, usePa
 const MarketPrices = props => {
 	// const match = useRouteMatch();
 	// console.log(match);
+	const [step, setStep] = useState(0);
 	const [vals, setValues] = useState({});
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const history = useHistory();
 	const { values } = props;
 	const handler = (evt) => {
-		// console.log(evt.target);
-		// console.log(history);
 		const { name, value } = evt.target;
 		setValues({ ...vals, [name]: value });
 		const BASE = "/info-portal/market-prices/";
@@ -37,7 +36,6 @@ const MarketPrices = props => {
 				setCurrentIndex(currentIndex + 1);
 				break;
 		}
-		// history.goForward();
 	}
 	const MARKET_PRICE_STAGES = [
 		{
@@ -154,7 +152,6 @@ const MarketPrices = props => {
 					)
 				})
 			}
-
 		</div>
 	)
 };
