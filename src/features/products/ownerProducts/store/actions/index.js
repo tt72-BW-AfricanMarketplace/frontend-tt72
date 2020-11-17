@@ -9,8 +9,6 @@ export const POST_OWNER_PRODUCT_START = 'POST_OWNER_PRODUCT_START';
 export const POST_OWNER_PRODUCT_SUCCESS = 'POST_OWNER_PRODUCT_START';
 export const POST_OWNER_PRODUCT_FAILURE = 'POST_OWNER_PRODUCT_START';
 
-
-
 //action creators
 
 export const fetchOwnerProducts = () => {

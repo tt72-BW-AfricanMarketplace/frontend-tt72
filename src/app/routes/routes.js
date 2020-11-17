@@ -2,7 +2,19 @@ import views from "../../features/views";
 import PATHS from "./paths";
 
 //ADD YOUR COMPONENT'S PATH to `paths.js` and add the PATH_NAME in the de-structured statement below
+<<<<<<< HEAD
 const { STYLESHEET_PATH, PORTAL_PATH, HOMEPAGE_PATH, LOGIN_PATH, OWNER_PRODUCTS_PATH, SIGNUP_PATH, OWNER_PRODUCT_DETAIL_PATH } = PATHS;
+=======
+const {
+	STYLESHEET_PATH,
+	PORTAL_PATH,
+	HOMEPAGE_PATH,
+	LOGIN_PATH,
+	OWNER_PRODUCTS_PATH,
+	BUYER_PRODUCTS_PATH,
+	SIGNUP_PATH
+} = PATHS;
+>>>>>>> a0723a17634e225d1be1d6aa6610aa984da2c5f4
 
 //ADD YOUR COMPONENT OBJECT BELOW AND ADD YOUR COMPONENT OBJECT IDENTIFIER TO THE ARRAY AT THE BOTTOM
 // component & path are REQUIRED
@@ -29,6 +41,11 @@ export const OWNER_PRODUCTS = {
 	component: views.OwnerProductPage,
 	path: OWNER_PRODUCTS_PATH,
 };
+
+export const BUYER_PRODUCTS = {
+	component: views.BuyerProductPage,
+	path: BUYER_PRODUCTS_PATH,
+}
 
 export const HOMEPAGE = {
 	component: views.HomePage,

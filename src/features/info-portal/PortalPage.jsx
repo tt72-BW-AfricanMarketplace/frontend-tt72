@@ -45,8 +45,6 @@ const PortalPage = props => {
 	};
 
 	return (
-		// <Router>
-		// </Router>
 		<>
 			<Page>
 				<Header />

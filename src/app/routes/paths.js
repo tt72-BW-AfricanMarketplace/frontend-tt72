@@ -4,6 +4,7 @@ const PATHS = {
 	LOGIN_PATH: "/login",
 	PORTAL_PATH: "/info-portal",
 	OWNER_PRODUCTS_PATH: '/owner/products',
+	BUYER_PRODUCTS_PATH: "/buyer/products",
 	SIGNUP_PATH: "/signup",
 	OWNER_PRODUCT_DETAIL_PATH: '/owner/products/:id',
 };

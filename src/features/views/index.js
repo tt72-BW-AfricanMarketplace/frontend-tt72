@@ -7,6 +7,7 @@ import PortalPage from "../info-portal/PortalPage";
 import OwnerProductPage from "../products/ownerProducts/OwnerProductPage";
 import SignupPage from "../sign-up/SignupPage";
 import OwnerProductDetailPage from '../products/ownerProducts/ProductDetail'
+import BuyerProductPage from "../products/buyerProducts/BuyerProductPage";
 
 
 const views = {
@@ -15,6 +16,7 @@ const views = {
 	LoginPage,
 	PortalPage,
 	OwnerProductPage,
+	BuyerProductPage,
 	SignupPage,
 	OwnerProductDetailPage,
 }
