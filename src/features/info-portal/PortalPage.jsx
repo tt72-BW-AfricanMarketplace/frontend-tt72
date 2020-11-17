@@ -84,7 +84,7 @@ const PortalPage = props => {
 			</Page>
 
 			<Switch>
-				<Route path="/info-portal/market-prices">
+				<Route path="/info-portal/market-prices/:step">
 					<MarketPrices values={values} handler={handler} />
 				</Route>
 				<Route path="/info-portal/exchange-rates">
