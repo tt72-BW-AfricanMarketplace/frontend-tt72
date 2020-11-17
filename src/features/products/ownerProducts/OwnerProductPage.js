@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchOwnerProducts } from './store/actions' 
 import layout from '../../layout';
 import ProductThumbnail from './ProductThumbnail';
+import Header from "../../shared/Header";
 
 const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
 
@@ -10,36 +11,38 @@ const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
 
 const OwnerProductPage = (props) => {
     return (
-        <Container>
-            This is Product Page
-             
-            {
-                props.isLoading ? <p>Loading Products</p> : null
-            }
-            {
-                props.error ? <p>{props.error}</p> : null
-            }
+        <div>
+            <Header />
 
-            <Flex>
+            <Container>                
                 {
-                    props.products.map((product, idx) => {
-
-                        return (
-                            <ProductThumbnail
-                                key={idx}
-                                product={product}
-                                index={idx}
-                            />
-                               
-
-                            
-                        )
-                    })
+                    props.isLoading ? <p>Loading Products</p> : null
                 }
-            </Flex>
+                {
+                    props.error ? <p>{props.error}</p> : null
+                }
+
+                <Flex>
+                    {
+                        props.products.map((product, idx) => {
+
+                            return (
+                                <ProductThumbnail
+                                    key={idx}
+                                    product={product}
+                                    index={idx}
+                                />
+                                
+
+                                
+                            )
+                        })
+                    }
+                </Flex>
             
 
-        </Container>
+            </Container>
+        </div>
     )
 }
 
