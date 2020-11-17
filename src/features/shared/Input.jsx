@@ -15,11 +15,16 @@ const StyledInput = styled.input`
 	margin: 1rem;
 `;
 
-const Input = ({ name, type, placeholder, onChange, className, value, children, label, ...props }) => {
+const Input = ({ name, type, placeholder, onChange, className, value, children, label, readOnly, ...props }) => {
+	// const readOnly = readonly || false;
 	return (
 		<>
 			<label htmlFor={name}>{label}</label>
-			<StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} {...props} />
+			{
+				readOnly === true
+					? <StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} readOnly={true} {...props} />
+					: <StyledInput id={name} name={name} type={type} placeholder={placeholder} onChange={onChange} value={value} className={className} {...props} />
+			}
 		</>
 	)
 };
@@ -27,14 +32,16 @@ const Input = ({ name, type, placeholder, onChange, className, value, children, 
 Input.defaultProps = {
 	type: "text",
 	className: "",
+	readOnly: false,
 };
 Input.propTypes = {
 	name: PropTypes.string.isRequired,
 	type: PropTypes.oneOf(["text", "number", "password", "email"]),
-	placeholder: PropTypes.string.isRequired,
+	placeholder: PropTypes.string,
 	className: PropTypes.string,
 	value: PropTypes.any,
-	onChange: PropTypes.func.isRequired,
+	readOnly: PropTypes.bool,
+	onChange: PropTypes.func,
 };
 
 export default Input;

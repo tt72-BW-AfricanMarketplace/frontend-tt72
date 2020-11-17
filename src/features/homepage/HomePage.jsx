@@ -6,6 +6,7 @@ import layout from "../layout";
 const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH, OWNER_PRODUCTS_PATH } = PATHS;
 const { Heading, Container, Flex, Link, Button } = layout;
 
+
 const HomeContainer = styled(Container)`
 	height: 80vh;
 	margin: 0 auto;
