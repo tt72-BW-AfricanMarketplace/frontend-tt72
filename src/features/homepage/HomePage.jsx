@@ -3,8 +3,9 @@ import styled from "styled-components";
 import Header from "../shared/Header";
 import PATHS from "../../app/routes/paths";
 import layout from "../layout";
-const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH, SIGNUP_PATH } = PATHS;
-const { Heading, Container, Flex, Link } = layout;
+const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH, SIGNUP_PATH, OWNER_PRODUCTS_PATH} = PATHS;
+const { Heading, Container, Flex, Link, Button } = layout;
+
 
 const HomeContainer = styled(Container)`
 	height: 80vh;
@@ -41,6 +42,7 @@ const HomePage = () => {
 						<Link to={LOGIN_PATH}>Login</Link>
 						<Link to={SIGNUP_PATH}>Signup</Link>
 						<Link secondary to={STYLESHEET_PATH}>Stylesheet</Link>
+						<Link to={OWNER_PRODUCTS_PATH}>Owner Products</Link>
 					</nav>
 				</Flex>
 			</HomeContainer>

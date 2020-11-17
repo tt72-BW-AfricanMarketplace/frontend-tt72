@@ -2,7 +2,7 @@ import views from "../../features/views";
 import PATHS from "./paths";
 
 //ADD YOUR COMPONENT'S PATH to `paths.js` and add the PATH_NAME in the de-structured statement below
-const { STYLESHEET_PATH, PORTAL_PATH, HOMEPAGE_PATH, LOGIN_PATH, SIGNUP_PATH } = PATHS;
+const { STYLESHEET_PATH, PORTAL_PATH, HOMEPAGE_PATH, LOGIN_PATH, OWNER_PRODUCTS_PATH, SIGNUP_PATH } = PATHS;
 
 //ADD YOUR COMPONENT OBJECT BELOW AND ADD YOUR COMPONENT OBJECT IDENTIFIER TO THE ARRAY AT THE BOTTOM
 // component & path are REQUIRED
@@ -25,6 +25,11 @@ export const LOGIN = {
 	path: LOGIN_PATH,
 };
 
+export const OWNER_PRODUCTS = {
+	component: views.OwnerProductPage,
+	path: OWNER_PRODUCTS_PATH,
+};
+
 export const HOMEPAGE = {
 	component: views.HomePage,
 	path: HOMEPAGE_PATH,
@@ -38,7 +43,7 @@ export const SIGNUP = {
 };
 
 //ADD YOUR NEWLY CREATED ROUTE OBJECT TO THIS ARRAY
-const ROUTES = [STYLESHEET, LOGIN, INFO_PORTAL, SIGNUP];
+const ROUTES = [STYLESHEET, LOGIN, INFO_PORTAL, OWNER_PRODUCTS, SIGNUP];
 
 //NOTE: HOMEPAGE MUST BE LAST BECAUSE OF ROUTE PATH
 ROUTES.push(HOMEPAGE);
