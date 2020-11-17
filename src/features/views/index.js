@@ -4,6 +4,7 @@ import Stylesheet from "../stylesheet/Stylesheet";
 import HomePage from "../homepage/HomePage";
 import LoginPage from "../login/LoginPage";
 import PortalPage from "../info-portal/PortalPage";
+import SignupPage from "../sign-up/SignupPage"
 
 
 const views = {
@@ -11,5 +12,6 @@ const views = {
 	Stylesheet,
 	LoginPage,
 	PortalPage,
+	SignupPage,
 }
 export default views;
