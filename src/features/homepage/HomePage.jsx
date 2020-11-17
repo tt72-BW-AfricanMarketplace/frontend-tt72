@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Header from "../shared/Header";
 import PATHS from "../../app/routes/paths";
 import layout from "../layout";
-const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH } = PATHS;
+const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH, SIGNUP_PATH } = PATHS;
 const { Heading, Container, Flex, Link } = layout;
 
 const HomeContainer = styled(Container)`
@@ -39,6 +39,7 @@ const HomePage = () => {
 						<Link to={HOMEPAGE_PATH}>Home</Link>
 						<Link to={PORTAL_PATH}>Info Portal</Link>
 						<Link to={LOGIN_PATH}>Login</Link>
+						<Link to={SIGNUP_PATH}>Signup</Link>
 						<Link secondary to={STYLESHEET_PATH}>Stylesheet</Link>
 					</nav>
 				</Flex>

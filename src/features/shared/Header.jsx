@@ -7,7 +7,7 @@ import { logout } from "../login/loginSlice";
 import PATHS from "../../app/routes/paths";
 import layout from "../layout";
 const { Heading, Link, Button } = layout;
-const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH } = PATHS;
+const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH, SIGNUP_PATH } = PATHS;
 
 const StyledHeader = styled.header`
 	width: 100vw;
@@ -49,6 +49,7 @@ const Header = props => {
 						<Link to={HOMEPAGE_PATH}>Home</Link>
 						<Link secondary to={STYLESHEET_PATH}>Stylesheet</Link>
 						<Link to={PORTAL_PATH}>Info Portal</Link>
+						<Link to={SIGNUP_PATH}>Signup</Link>
 						{!isLoggedIn ?
 							<Link to={LOGIN_PATH}>Login</Link>
 							: <Button onClick={handleLogout}>Logout</Button>
