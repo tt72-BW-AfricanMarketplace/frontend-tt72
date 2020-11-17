@@ -5,6 +5,7 @@ import HomePage from "../homepage/HomePage";
 import LoginPage from "../login/LoginPage";
 import PortalPage from "../info-portal/PortalPage";
 import OwnerProductPage from "../products/ownerProducts/OwnerProductPage";
+import BuyerProductPage from "../products/buyerProducts/BuyerProductPage";
 import SignupPage from "../sign-up/SignupPage"
 
 
@@ -14,6 +15,7 @@ const views = {
 	LoginPage,
 	PortalPage,
 	OwnerProductPage,
+	BuyerProductPage,
 	SignupPage,
 }
 export default views;
