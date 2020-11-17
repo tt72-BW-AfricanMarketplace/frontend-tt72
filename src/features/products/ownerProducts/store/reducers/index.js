@@ -21,7 +21,7 @@ const initialState = {
             currency: 'USD'
         },
         {
-            id: 0,
+            id: 1,
             seller_id: 1,
             item_name: 'French Bread',
             amount: 10,
@@ -31,7 +31,7 @@ const initialState = {
             currency: 'USD'
         },
         {
-            id: 0,
+            id: 2,
             seller_id: 1,
             item_name: 'Pumpkins',
             amount: 20,
@@ -41,7 +41,7 @@ const initialState = {
             currency: 'USD'
         },
         {
-            id: 0,
+            id: 3,
             seller_id: 1,
             item_name: 'Truffles',
             amount: 25,
@@ -76,7 +76,6 @@ export const ownerProductReducer = (state = initialState, action) => {
                 error: action.payload
             }
         default:
-            // console.log('state from reducer', state)
             return state;
     }
 }

@@ -5,7 +5,14 @@ const ProductDetail = (props) => {
     const { product } = props;
     return (
         <div>
-            This is Product Detail
+            <form>
+                <label>
+                    Item Name
+                    <input
+                        
+                    />
+                </label>
+            </form>
         </div>
     )
 }
