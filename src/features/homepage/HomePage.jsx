@@ -3,8 +3,17 @@ import styled from "styled-components";
 import Header from "../shared/Header";
 import PATHS from "../../app/routes/paths";
 import layout from "../layout";
-const { HOMEPAGE_PATH, STYLESHEET_PATH, LOGIN_PATH, PORTAL_PATH, SIGNUP_PATH, OWNER_PRODUCTS_PATH} = PATHS;
-const { Heading, Container, Flex, Link, Button } = layout;
+const { Heading, Container, Flex, Link } = layout;
+
+const {
+	HOMEPAGE_PATH,
+	STYLESHEET_PATH,
+	LOGIN_PATH,
+	PORTAL_PATH,
+	SIGNUP_PATH,
+	OWNER_PRODUCTS_PATH,
+	BUYER_PRODUCTS_PATH,
+} = PATHS;
 
 
 const HomeContainer = styled(Container)`
@@ -24,7 +33,7 @@ const HomeContainer = styled(Container)`
 		nav {
 			display: flex;
 			flex-flow: row wrap;
-			justify-content: space-between;
+			justify-content: flex-start;
 		}
 	}
 `;
@@ -41,8 +50,9 @@ const HomePage = () => {
 						<Link to={PORTAL_PATH}>Info Portal</Link>
 						<Link to={LOGIN_PATH}>Login</Link>
 						<Link to={SIGNUP_PATH}>Signup</Link>
-						<Link secondary to={STYLESHEET_PATH}>Stylesheet</Link>
+						<Link to={BUYER_PRODUCTS_PATH}>Buyer Products</Link>
 						<Link to={OWNER_PRODUCTS_PATH}>Owner Products</Link>
+						<Link secondary to={STYLESHEET_PATH}>Stylesheet</Link>
 					</nav>
 				</Flex>
 			</HomeContainer>
