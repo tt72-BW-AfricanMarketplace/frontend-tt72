@@ -34,7 +34,7 @@ export const productSlice = createSlice({
 	initialState,
 	extraReducers: {
 		[fetchProduct.pending]: (state, action) => {
-			state.status = "pending",
+			state.status = "pending";
 		},
 		[fetchProduct.fulfilled]: (state, action) => {
 			state.product = action.payload;
