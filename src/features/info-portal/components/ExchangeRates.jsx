@@ -8,11 +8,12 @@ import Input from "../../shared/Input";
 const { Heading } = layout;
 
 const SExchange = styled.div`
-	display: ${pr => pr.shown ? "block" : "none"};
+	/* display: ${pr => pr.shown ? "block" : "none"}; */
+	display: block;
 	background-color: var(--pDark);
 	height: 200px;
 	width: 80%;
-	margin: 0 auto;
+	margin: 1rem auto;
 `;
 
 const Opt = ({ name }) => {
@@ -62,7 +63,7 @@ const ExchangeRates = props => {
 
 	return (
 		<>
-			<SExchange shown={true}>
+			<SExchange>
 				<Heading h4>Please select currencies to compare</Heading>
 				<div>
 					<select name="base" id="base" onChange={handleSelect}>

@@ -32,7 +32,7 @@ const RadioGroup = ({ groupName, fields, handler }) => {
 	const handleClick = (evt) => {
 		const { name, value } = evt.target;
 		setSelected(value);
-		handler(name, value);
+		handler(evt);
 	};
 
 	const formatFieldName = (str) => {
