@@ -46,7 +46,7 @@ export const productSlice = createSlice({
 		},
 		[fetchAllProducts.pending]: (state, action) => {
 			state.status = "pending";
-		}
+		},
 		[fetchAllProducts.fulfilled]: (state, action) => {
 			state.products = action.payload;
 			state.status = "pending";
