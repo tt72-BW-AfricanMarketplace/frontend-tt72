@@ -30,13 +30,13 @@ const Dot = styled.span`
 `
 
 const Loader = props => {
-	return (
-		<StyledDotsLoader {...props}>
-			<Dot {...props} style={{}} />
-			<Dot {...props} style={{}} />
-			<Dot {...props} style={{}} />
-		</StyledDotsLoader>
-	)
+  return (
+    <StyledDotsLoader {...props}>
+      <Dot {...props} style={{}} />
+      <Dot {...props} style={{}} />
+      <Dot {...props} style={{}} />
+    </StyledDotsLoader>
+  )
 }
 
 export default Loader
