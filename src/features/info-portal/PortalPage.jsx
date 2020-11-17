@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch, Link } from "react-router-dom";
 import MarketPrices from "./components/MarketPrices";
 import ExchangeRates from "./components/ExchangeRates";
 import TradeInfo from "./components/TradeInfo";
@@ -45,7 +45,9 @@ const PortalPage = props => {
 	};
 
 	return (
-		<Router>
+		// <Router>
+		// </Router>
+		<>
 			<Page>
 				<Header />
 				<Heading h1>Info Portal Page</Heading>
@@ -71,8 +73,11 @@ const PortalPage = props => {
 				<Route path="/info-portal/report-incident">
 					<ReportIncident />
 				</Route>
+				<Route exact path="/info-portal">
+					<Redirect to="/info-portal/exchange-rates" />
+				</Route>
 			</Switch>
-		</Router>
+		</>
 	);
 };
 
