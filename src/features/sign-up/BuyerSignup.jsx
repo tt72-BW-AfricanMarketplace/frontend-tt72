@@ -1,8 +1,10 @@
 import React from "react";
-import useForm from "../../hooks/useForm";
+import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
 import layout from "../layout";
+import schema from "./signupScheme";
+
 const { Button } = layout;
 
 const StyledForm = styled.form`
@@ -25,12 +27,20 @@ const initialState = {
 };
 
 const BuyerSignup = (props) => {
-	const [values, handleChanges, clearForm] = useForm(initialState);
-
+	// const [values, handleChanges, clearForm] = useForm(initialState);
+	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(values);
+		console.log(errors)
 		clearForm();
+
+	}
+	const handleChanges = evt => {
+		// e.preventDefault();
+		handleChange(evt);
+		console.log(values);
+		console.log(errors)
 	}
 
 	return (
@@ -74,12 +84,12 @@ const BuyerSignup = (props) => {
 				/>
 			</div>
 
-			<Button> Submit </Button>
-			{/* <div className="errors">
+			<Button disabled={disabled}> Submit </Button>
+			<div className="errors">
 				<div>{errors.username}</div>
 				<div>{errors.email}</div>
 				<div>{errors.password}</div>
-			</div> */}
+			</div>
 		</StyledForm>
 	);
 };
