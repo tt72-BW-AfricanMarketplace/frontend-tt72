@@ -30,7 +30,7 @@ export const RadioGroup = ({ groupName, fields, handler }) => {
 	const [selected, setSelected] = useState("");
 
 	const handleClick = (evt) => {
-		const { name, value } = evt.target;
+		const { value } = evt.target;
 		setSelected(value);
 		handler(evt);
 	};

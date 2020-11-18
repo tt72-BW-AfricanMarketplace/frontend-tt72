@@ -5,29 +5,31 @@ const Parent = styled.div`
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
-	/* height: 76.6vh; */
+	width: 100vw;
 	height: 100%;
+	.left {
+		width: 15%;
+	}
+	.middle {
+		width: 65%;
+	}
+	.right {
+		width: 20%;
+	}
 `;
 
-const Left = styled.div`
-	width: 15%;
-	height: 100%;
-`;
-
-const Right = styled.div`
-	width: 80%;
-	height: 100%;
-`;
-
-const SplitPane = props => {
+export const SplitPane = props => {
 	return (
 		<Parent>
-			<Left>
+			<div className="left">
 				{props.left}
-			</Left>
-			<Right>
+			</div>
+			<div className="middle" exists={props.middle}>
+				{props.middle}
+			</div>
+			<div className="right" exists={props.right}>
 				{props.right}
-			</Right>
+			</div>
 		</Parent>
 	);
 };

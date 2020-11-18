@@ -33,11 +33,18 @@ class Card extends React.Component {
 	}
 
 	componentDidMount() {
-		setTimeout(() => {
+		this.timerHandle = setTimeout(() => {
 			this.setState(() => {
 				return { animated: true }
 			})
 		}, this.props.delay)
+	}
+
+	componentWillUnmount() {
+		if (this.timerHandle) {
+			clearTimeout(this.timerHandle);
+			this.timerHandle = 0;
+		}
 	}
 
 	render() {
