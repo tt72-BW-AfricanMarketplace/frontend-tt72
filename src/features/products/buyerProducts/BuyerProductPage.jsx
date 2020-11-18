@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Header from "../../shared/Header";
 import Guide from "./components/Guide";
 import BProductCard from "./components/BProductCard";
+import Cart from "./components/Cart";
 import SplitPane from "./components/SplitPane";
 import { fetchAllProducts, fetchProduct } from "../productSlice";
 
@@ -54,10 +55,13 @@ const BuyerProductPage = props => {
 					left={
 						<Guide key="left" />
 					}
-					right={
+					middle={
 						products.map(product => {
 							return <BProductCard key={product.id} product={product} />
 						})
+					}
+					right={
+						<Cart />
 					}
 				/>
 			</Main>

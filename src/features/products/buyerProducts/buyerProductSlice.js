@@ -50,11 +50,23 @@ const buyerProductSlice = createSlice({
 		},
 		addToCart2: {
 			reducer: (state, action) => {
-				state.cart.push(action.payload);
-				state.totalPrice += (action.payload.quantity * action.payload.product.price);
+				const { id, product, quantity } = action.payload;
+				const indexInCart = state.cart.findIndex(cp => { return (cp.id === product.id) });
+				if (indexInCart > -1) {
+					const prevItem = { ...state.cart[indexInCart] };
+					prevItem.quantity += quantity;
+					state.cart[indexInCart] = prevItem;
+					state.totalPrice += (action.payload.quantity * action.payload.product.price);
+				} else {
+					state.cart.push(action.payload);
+					state.totalPrice += (action.payload.quantity * action.payload.product.price);
+				}
+
 			},
 			prepare: (product, quantity) => {
-				return { payload: { product, quantity } };
+				return {
+					payload: { id: product.id, product, quantity: Number(quantity) }
+				};
 			},
 		}
 	},
