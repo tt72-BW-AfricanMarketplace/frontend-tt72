@@ -6,25 +6,26 @@ const initialState = {
 	products: [],
 	product: undefined,
 	error: undefined,
-}
+};
+
 export const addNewProduct = createAsyncThunk(
 	"product/addNewProduct",
 	async (initProduct) => {
-		const res = await axiosAuth().post("");
+		const res = await axiosAuth().post(`products/${initProduct.id}`, initProduct);
 		return res.post;
 	}
 )
 export const fetchProduct = createAsyncThunk(
 	"product/fetchProduct",
 	async (id) => {
-		const data = await axiosAuth().get("");
+		const data = await axiosAuth().get(`products/${id}`);
 		return data;
 	}
 );
 export const fetchAllProducts = createAsyncThunk(
 	"products/fetchAllProducts",
 	async () => {
-		const data = axiosAuth().get("");
+		const data = axiosAuth().get(`products`);
 		return data;
 	}
 );

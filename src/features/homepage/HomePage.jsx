@@ -1,11 +1,9 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchRandomDog } from "../products/doggySlice";
 import styled from "styled-components";
 import Header from "../shared/Header";
 import PATHS from "../../app/routes/paths";
 import layout from "../layout";
-const { Heading, Container, Flex, Link, Button } = layout;
+const { Heading, Container, Flex, Link } = layout;
 
 const {
 	HOMEPAGE_PATH,
@@ -41,15 +39,11 @@ const HomeContainer = styled(Container)`
 `;
 
 const HomePage = () => {
-	const dogs = useSelector(state => state.dogs.entities);
-	const dispatch = useDispatch();
-
 	return (
 		<>
 			<Header />
 			<HomeContainer>
 				<Heading h1>This is the dev-nav, just for us</Heading>
-				<Button onClick={() => dispatch(fetchRandomDog())}>Fetch Dog</Button>
 				<Flex justifyCenter alignCenter>
 					<nav>
 						<Link to={HOMEPAGE_PATH}>Home</Link>
