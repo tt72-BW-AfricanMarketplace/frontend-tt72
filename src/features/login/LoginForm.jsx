@@ -16,10 +16,10 @@ const FormContainer = styled(Container)`
 
 const loginValues = [
 	{
-		name: "username",
-		type: "text",
-		placeholder: "username",
-		className: "username-field",
+		name: "email",
+		type: "email",
+		placeholder: "email",
+		className: "email-field",
 	},
 	{
 		name: "password",
@@ -33,7 +33,7 @@ const LoginForm = (props) => {
 	// const loginState = useSelector(state => state.login);
 	const dispatch = useDispatch();
 	const handleSubmit = (values) => {
-		console.log(values);
+		console.log("FROM LOGINFORM ", values);
 		dispatch(login(values));
 	}
 	return (

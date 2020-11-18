@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
-import { BrowserRouter as Router, Redirect, Route, Switch, Link } from "react-router-dom";
+import { Redirect, Route, Switch, Link } from "react-router-dom";
 import MarketPrices from "./components/MarketPrices";
 import ExchangeRates from "./components/ExchangeRates";
 import TradeInfo from "./components/TradeInfo";
