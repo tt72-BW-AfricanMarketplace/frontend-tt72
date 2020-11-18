@@ -61,7 +61,7 @@ export const productSlice = createSlice({
 			state.error = action.payload;
 		},
 		[addNewProduct.fulfilled]: (state, action) => {
-			state.produces.push(action.payload);
+			state.products.push(action.payload);
 		},
 	},
 });

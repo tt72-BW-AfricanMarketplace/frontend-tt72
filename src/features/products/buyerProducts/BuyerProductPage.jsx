@@ -47,11 +47,11 @@ const BuyerProductPage = props => {
 			</Banner>
 			<SplitPane
 				left={
-					<Guide />
+					<Guide key="left" />
 				}
 				right={
 					products.map(product => {
-						return <BProductCard product={product} />
+						return <BProductCard key={product.id} product={product} />
 					})
 				}
 			/>
