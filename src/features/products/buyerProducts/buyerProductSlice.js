@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import client from "../../../env/api/client";
 
 export const initialState = {
 	status: "idle",
@@ -6,15 +7,15 @@ export const initialState = {
 	cart: [],
 	totalPrice: 0,
 	product: [],
-}
+};
+
+
+
 
 const buyerProductSlice = createSlice({
 	name: "buyerProducts",
 	initialState,
 	reducers: {
-		addToCart2: (state, action) => {
-			state.cart.push(action.payload);
-		},
 		addToCart: {
 			reducer: (state, action) => {
 				const { id, product, quantity } = action.payload;
@@ -49,6 +50,6 @@ const buyerProductSlice = createSlice({
 	extraReducers: {},
 });
 
-export const { addToCart, addToCart2, removeFromCart } = buyerProductSlice.actions;
+export const { addToCart, removeFromCart } = buyerProductSlice.actions;
 
 export default buyerProductSlice.reducer;

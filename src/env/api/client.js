@@ -3,20 +3,26 @@ import axios from "axios";
 const client = {
 	BASE_URL: "https://african--market.herokuapp.com/api/",
 }
+
+
+
+//................. AXIOS CREATORS ........................//
 client.axios = () => {
 	return axios.create({
-		baseURL: "https://african--market.herokuapp.com/api/",
+		// baseURL: "https://african--market.herokuapp.com/api/",
+		baseURL: client.BASE_URL,
 	});
 };
 
+
+
 //................. LOGIN & SIGN UP ........................//
-const login = async (email, password) => {
+client.login = async (email, password) => {
 	const res = await client.axios().post("auth/login", { email, password });
 	return res;
 };
-client.login = login;
 
-const signup = async (username, email, password) => {
+client.signup = async (username, email, password) => {
 	const res = await client.axios().post("auth/register",
 		{
 			username: username ?? undefined,
@@ -26,7 +32,7 @@ const signup = async (username, email, password) => {
 	);
 	return res;
 };
-client.signup = signup;
+
 
 
 //................. USERS  ........................//
@@ -35,21 +41,20 @@ client.getAllUsers = async () => {
 	return res;
 };
 
-client.getUserById = async (id) => {
-	const res = await client.axios().get(`users/${id}`);
+client.getUser = async (userId) => {
+	const res = await client.axios().get(`users/${userId}`);
 	return res;
 };
 
-client.editUserById = async (id, user) => {
-	const res = await client.axios().put(`users/${id}`, user);
+client.editUser = async (userId, user) => {
+	const res = await client.axios().put(`users/${userId}`, user);
 	return res;
 }
 
-client.deleteUserById = async (id) => {
-	const res = await client.axios().delete(`users/${id}`);
+client.deleteUser = async (userId) => {
+	const res = await client.axios().delete(`users/${userId}`);
 	return res;
 };
-
 
 
 
@@ -59,24 +64,24 @@ client.getItemsByProductId = async (productId) => {
 	return res;
 };
 
-client.editAllItems = async (items) => {
+client.addItems = async (items) => {
 	const res = await client.axios().post(`items/`, items);
 	return res;
-}
+};
 
-client.getProductsByUserId = async (id) => {
-	const res = await client.axios().get(`products/${id}`);
+client.getProductsByUserId = async (userId) => {
+	const res = await client.axios().get(`products/${userId}`);
 	return res;
-}
+};
 
-client.addProductByUserId = async (id, product) => {
-	const res = await client.axios().post(`products/${id}`, product);
+client.addProductByUserId = async (userId, product) => {
+	const res = await client.axios().post(`products/${userId}`, product);
 	return res;
-}
+};
 
 client.editProduct = async (userId, productId, product) => {
 	const res = await client.axios().post(`products/${userId}/product/${productId}`, product);
 	return res;
-}
+};
 
 export default client;

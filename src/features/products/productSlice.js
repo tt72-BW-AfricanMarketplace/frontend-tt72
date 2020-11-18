@@ -19,7 +19,7 @@ export const addNewProduct = createAsyncThunk(
 export const fetchProduct = createAsyncThunk(
 	"product/fetchProduct",
 	async (id) => {
-		const res = await client.getProductById(id);
+		const res = await client.getProductsByUserId(id);
 		console.log(res.data);
 		return res.data;
 	}
