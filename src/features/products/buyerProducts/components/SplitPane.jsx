@@ -11,10 +11,10 @@ const Parent = styled.div`
 		width: 15%;
 	}
 	.middle {
-		width: 70%;
+		width: 65%;
 	}
 	.right {
-		width: 15%;
+		width: 20%;
 	}
 `;
 
