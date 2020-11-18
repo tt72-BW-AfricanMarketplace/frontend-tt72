@@ -37,6 +37,7 @@ export const initialState = {
 	status: "idle",
 	error: "",
 	cart: [],
+	totalPrice: 0,
 	product: [],
 }
 
@@ -47,10 +48,19 @@ const buyerProductSlice = createSlice({
 		addToCart: (state, action) => {
 			state.cart.push(action.payload);
 		},
+		addToCart2: {
+			reducer: (state, action) => {
+				state.cart.push(action.payload);
+				state.totalPrice += (action.payload.quantity * action.payload.product.price);
+			},
+			prepare: (product, quantity) => {
+				return { payload: { product, quantity } };
+			},
+		}
 	},
 	extraReducers: {},
 });
 
-export const { addToCart } = buyerProductSlice.actions;
+export const { addToCart, addToCart2 } = buyerProductSlice.actions;
 
 export default buyerProductSlice.reducer;
