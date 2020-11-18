@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { fetchOwnerProducts } from './store/actions' 
 import layout from '../../layout';
@@ -9,10 +9,10 @@ const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
 
 
 const initialItem = {
-    item_name: '',
-    amount: 0,
-    unit: '',
-    available: 0,
+    product_name: '',
+    all_amount: 0,
+    measurement_unit: '',
+    available_amount: 0,
     price: '',
     currency: '',
 }
@@ -20,6 +20,11 @@ const initialItem = {
 const OwnerProductPage = (props) => {
     const [ addActive, setAddActive ] = useState(false)
     const [ formItem, setFormItem ] = useState(initialItem)
+    const id = 1; // fix with log in token later
+
+    useEffect(() => {
+        props.fetchOwnerProducts(id)
+    }, [])
 
     const handleClick = () => {
         setAddActive(!addActive)
@@ -67,36 +72,36 @@ const OwnerProductPage = (props) => {
                                             Item Name
                                             <input
                                                 type='text'
-                                                name='item_name'
+                                                name='product_name'
                                                 onChange={handleChange}
-                                                value={formItem.item_name}
+                                                value={formItem.product_name}
                                             />
                                         </label>
                                         <label>
                                             Amount
                                             <input
                                                 type='number'
-                                                name='amount'
+                                                name='all_amount'
                                                 onChange={handleChange}
-                                                value={formItem.amount}
+                                                value={formItem.all_amount}
                                             />
                                         </label>
                                         <label>
                                             Unit
                                             <input
                                                 type='text'
-                                                name='unit'
+                                                name='measurement_unit'
                                                 onChange={handleChange}
-                                                value={formItem.unit}
+                                                value={formItem.measurement_unit}
                                             />
                                         </label>
                                         <label>
                                             Available
                                             <input
                                                 type='number'
-                                                name='available'
+                                                name='available_amount'
                                                 onChange={handleChange}
-                                                value={formItem.available}
+                                                value={formItem.available_amount}
                                             />
                                         </label>
                                         <label>

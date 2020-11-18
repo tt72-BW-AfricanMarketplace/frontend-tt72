@@ -1,4 +1,5 @@
 import axios from 'axios';
+import client from '../../../../../env/api/client'
 
 //action types
 export const FETCH_OWNER_PRODUCTS_START = 'FETCH_OWNER_PRODUCTS_START';
@@ -11,13 +12,13 @@ export const POST_OWNER_PRODUCT_FAILURE = 'POST_OWNER_PRODUCT_START';
 
 //action creators
 
-export const fetchOwnerProducts = () => {
+export const fetchOwnerProducts = (id) => {
     return (dispatch) => {
         dispatch({ type: FETCH_OWNER_PRODUCTS_START });
 
-        axios
-            .get('path here')
+        client.getProductById(id)
             .then((res) => {
+                // console.log('res from fetchOwnerProducts', res.data)
                 dispatch({
                     type: FETCH_OWNER_PRODUCTS_SUCCESS,
                     payload: res.data

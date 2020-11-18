@@ -16,10 +16,10 @@ const ProductThumbnail = (props) => {
         <Card primary delay={index * 125}>
 
             <Heading h3>
-                {product.item_name}
+                {product.product_name}
             </Heading>
-            <p>Original Amount: {product.amount} {product.unit}</p>
-            <p>Current Available: {product.available}</p>
+            <p>Original Amount: {product.all_amount} {product.measurement_unit}</p>
+            <p>Current Available: {product.available_amount}</p>
             <p>Price: {product.price} {product.currency} each</p>
 
             <Link to={`/owner/products/${product.id}`} secondary='true'>
