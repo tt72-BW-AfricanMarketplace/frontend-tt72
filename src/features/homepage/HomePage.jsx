@@ -5,17 +5,6 @@ import { PATHS } from "../../app/routes/routes";
 import layout from "../layout";
 const { Heading, Container, Flex, Link } = layout;
 
-// const {
-// 	HOMEPAGE_PATH,
-// 	STYLESHEET_PATH,
-// 	LOGIN_PATH,
-// 	PORTAL_PATH,
-// 	SIGNUP_PATH,
-// 	OWNER_PRODUCTS_PATH,
-// 	BUYER_PRODUCTS_PATH,
-// } = PATHS;
-
-
 const HomeContainer = styled(Container)`
 	height: 80vh;
 	margin: 0 auto;

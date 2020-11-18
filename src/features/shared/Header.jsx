@@ -3,20 +3,9 @@ import ThemeToggler from "./ThemeToggler";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../login/loginSlice";
-// import { PATHS } from "../../app/routes/routes";
 import { PATHS } from "../../app/routes/routes";
 import layout from "../layout";
 const { Heading, Link, Button } = layout;
-
-// const {
-// 	HOMEPAGE_PATH,
-// 	STYLESHEET_PATH,
-// 	LOGIN_PATH,
-// 	PORTAL_PATH,
-// 	SIGNUP_PATH,
-// 	OWNER_PRODUCTS_PATH,
-// 	BUYER_PRODUCTS_PATH,
-// } = PATHS;
 
 const StyledHeader = styled.header`
 	width: 100vw;
