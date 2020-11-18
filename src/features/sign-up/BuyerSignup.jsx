@@ -15,10 +15,10 @@ const initialState = {
 	username: "",
 	email: "",
 	password: "",
-}
+};
 
 const BuyerSignup = (props) => {
-	const [values, handleChanges, clearForm] = useForm(initialState);
+	const [values, handleChanges, clearForm, errors] = useForm(initialState);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -28,10 +28,43 @@ const BuyerSignup = (props) => {
 
 	return (
 		<StyledForm onSubmit={handleSubmit}>
-			<Input type="text" name="username" value={values.username} onChange={handleChanges} />
-			<Input type="email" name="email" value={values.email} onChange={handleChanges} />
-			<Input type="password" name="password" value={values.password} onChange={handleChanges} />
-			<Button>Submit</Button>
+			<label>
+				Username
+			<Input
+					type="text"
+					name="username"
+					value={values.username}
+					onChange={handleChanges}
+				/>
+			</label>
+
+			<label>
+				Email
+			<Input
+					type="email"
+					name="email"
+					value={values.email}
+					onChange={handleChanges}
+				/>
+
+			</label>
+
+			<label>
+				Password
+				<Input
+					type="password"
+					name="password"
+					value={values.password}
+					onChange={handleChanges}
+				/>
+			</label>
+
+			<Button> Submit </Button>
+			{/* <div className="errors">
+				<div>{errors.username}</div>
+				<div>{errors.email}</div>
+				<div>{errors.password}</div>
+			</div> */}
 		</StyledForm>
 	);
 };
