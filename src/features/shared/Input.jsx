@@ -13,6 +13,7 @@ const StyledInput = styled.input`
 	color: var(--pText);
 	border-radius: 4px;
 	margin: 1rem;
+	box-sizing: border-box;
 `;
 
 const Input = ({ name, type, placeholder, onChange, className, value, children, label, readOnly, ...props }) => {
