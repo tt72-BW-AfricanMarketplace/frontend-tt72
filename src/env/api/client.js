@@ -17,15 +17,18 @@ client.axios = () => {
 
 
 //................. LOGIN & SIGN UP ........................//
-client.login = async (email, password) => {
-	const res = await client.axios().post("auth/login", { email, password });
+client.login = async (userData) => {
+	console.log("FROM CLIENT.LOGIN — userData", userData);
+	console.log("FROM CLIENT.LOGIN ", userData.email, userData.password);
+	const res = await client.axios().post("auth/login", userData);
 	return res;
 };
+// client.login = login;
 
-client.signup = async (username, email, password) => {
+client.signup = async (userData) => {
+	const { email, password } = userData;
 	const res = await client.axios().post("auth/register",
 		{
-			username: username ?? undefined,
 			email,
 			password,
 		}

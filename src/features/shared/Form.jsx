@@ -16,6 +16,7 @@ const Form = ({ fields, handleSubmit }) => {
 	fields.forEach(field => initState[field.name] = field.initVal ? field.initVal : "");
 	const [values, handleChanges, clearForm] = useForm(initState);
 	const handleSubmitLocal = (evt) => {
+		console.log("FROM FORM ", values);
 		evt.preventDefault();
 		handleSubmit(values);
 		clearForm();
