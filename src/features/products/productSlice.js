@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import client from "../../env/api/client";
 import axiosAuth from "../../env/utils/axiosAuth";
 
 const initialState = {
@@ -10,23 +11,26 @@ const initialState = {
 
 export const addNewProduct = createAsyncThunk(
 	"product/addNewProduct",
-	async (initProduct) => {
-		const res = await axiosAuth().post(`products/${initProduct.id}`, initProduct);
-		return res.post;
+	async (id, initProduct) => {
+		const res = await client.postProduct(id, initProduct);
+		return res.data;
 	}
 )
 export const fetchProduct = createAsyncThunk(
 	"product/fetchProduct",
 	async (id) => {
-		const data = await axiosAuth().get(`products/${id}`);
-		return data;
+		const res = await client.getProductById(id);
+		console.log(res.data);
+		return res.data;
 	}
 );
 export const fetchAllProducts = createAsyncThunk(
 	"products/fetchAllProducts",
 	async () => {
-		const data = axiosAuth().get(`products`);
-		return data;
+		// const data = axiosAuth().get(`products`);
+		const res = await client.getAllProducts();
+		console.log(res);
+		return res.data;
 	}
 );
 
