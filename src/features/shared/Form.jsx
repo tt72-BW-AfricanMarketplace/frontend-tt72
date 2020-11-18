@@ -26,13 +26,18 @@ const Form = ({ fields, handleSubmit }) => {
 				fields.map(field => {
 					const { name, type, placeholder, className } = field;
 					return (
-						<Input
-							name={name}
-							type={type ? type : "text"}
-							placeholder={placeholder ? placeholder : name}
-							className={className ? className : ""}
-							value={values[name]}
-							onChange={handleChanges} />);
+						<div>
+							<label htmlFor={name}>{name}</label>
+							<Input
+								name={name}
+								id={name}
+								type={type ? type : "text"}
+								placeholder={placeholder ? placeholder : name}
+								className={className ? className : ""}
+								value={values[name]}
+								onChange={handleChanges} />
+						</div>
+					);
 				})
 			}
 			<Button secondary>Submit</Button>

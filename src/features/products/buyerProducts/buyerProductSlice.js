@@ -61,18 +61,26 @@ const buyerProductSlice = createSlice({
 					state.cart.push(action.payload);
 					state.totalPrice += (action.payload.quantity * action.payload.product.price);
 				}
-
 			},
 			prepare: (product, quantity) => {
 				return {
 					payload: { id: product.id, product, quantity: Number(quantity) }
 				};
 			},
+			removeFromCart: {
+				reducer: (state, action) => {
+
+				},
+				prepare: (id) => {
+
+				},
+
+			},
 		}
 	},
 	extraReducers: {},
 });
 
-export const { addToCart, addToCart2 } = buyerProductSlice.actions;
+export const { addToCart, addToCart2, removeFromCart } = buyerProductSlice.actions;
 
 export default buyerProductSlice.reducer;
