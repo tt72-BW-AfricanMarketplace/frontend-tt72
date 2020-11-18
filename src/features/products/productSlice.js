@@ -4,8 +4,8 @@ import axiosAuth from "../../env/utils/axiosAuth";
 
 const initialState = {
 	status: "",
+	// products: [],
 	products: [],
-	product: undefined,
 	error: undefined,
 };
 
@@ -42,7 +42,7 @@ export const productSlice = createSlice({
 			state.status = "pending";
 		},
 		[fetchProduct.fulfilled]: (state, action) => {
-			state.product = action.payload;
+			state.products = (action.payload);
 			state.status = "idle";
 		},
 		[fetchProduct.rejected]: (state, action) => {

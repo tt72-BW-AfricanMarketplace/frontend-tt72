@@ -12,6 +12,10 @@ const Page = styled.div`
 	flex-flow: column nowrap;
 `;
 
+const Main = styled.div`
+	height: 76vh;
+`;
+
 const Banner = styled.div`
 	margin: 3rem 0 0;
 	border-bottom: 1px solid var(--pLight);
@@ -30,7 +34,7 @@ const Banner = styled.div`
 	}
 `;
 const BuyerProductPage = props => {
-	const products = useSelector(state => state.product?.product ?? []);
+	const products = useSelector(state => state.product?.products ?? []);
 	// const [res, setRes] = useState({});
 	const dispatch = useDispatch();
 
@@ -45,16 +49,18 @@ const BuyerProductPage = props => {
 			<Banner>
 				<h1>Buyer Products Page</h1>
 			</Banner>
-			<SplitPane
-				left={
-					<Guide key="left" />
-				}
-				right={
-					products.map(product => {
-						return <BProductCard key={product.id} product={product} />
-					})
-				}
-			/>
+			<Main>
+				<SplitPane
+					left={
+						<Guide key="left" />
+					}
+					right={
+						products.map(product => {
+							return <BProductCard key={product.id} product={product} />
+						})
+					}
+				/>
+			</Main>
 		</Page>
 	);
 }
