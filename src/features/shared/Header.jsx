@@ -3,19 +3,9 @@ import ThemeToggler from "./ThemeToggler";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../login/loginSlice";
-// import { PATHS } from "../../app/routes/routes";
-import PATHS from "../../app/routes/paths";
+import { PATHS } from "../../app/routes/routes";
 import layout from "../layout";
 const { Heading, Link, Button } = layout;
-const {
-	HOMEPAGE_PATH,
-	STYLESHEET_PATH,
-	LOGIN_PATH,
-	PORTAL_PATH,
-	SIGNUP_PATH,
-	OWNER_PRODUCTS_PATH,
-	BUYER_PRODUCTS_PATH,
-} = PATHS;
 
 const StyledHeader = styled.header`
 	width: 100vw;
@@ -54,16 +44,16 @@ const Header = props => {
 				</div>
 				<div>
 					<nav>
-						<Link to={HOMEPAGE_PATH}>Home</Link>
-						<Link to={PORTAL_PATH}>Info Portal</Link>
-						<Link to={SIGNUP_PATH}>Signup</Link>
-						<Link to={OWNER_PRODUCTS_PATH}>Owner Products</Link>
-						<Link to={BUYER_PRODUCTS_PATH}>Buyer Products</Link>
+						<Link to={PATHS.HOMEPAGE_PATH}>Home</Link>
+						<Link to={PATHS.PORTAL_PATH}>Info Portal</Link>
+						<Link to={PATHS.SIGNUP_PATH}>Signup</Link>
+						<Link to={PATHS.OWNER_PRODUCTS_PATH}>Owner Products</Link>
+						<Link to={PATHS.BUYER_PRODUCTS_PATH}>Buyer Products</Link>
 						{!isLoggedIn ?
-							<Link to={LOGIN_PATH}>Login</Link>
+							<Link to={PATHS.LOGIN_PATH}>Login</Link>
 							: <Button onClick={handleLogout}>Logout</Button>
 						}
-						<Link secondary to={STYLESHEET_PATH}>Stylesheet</Link>
+						<Link secondary to={PATHS.STYLESHEET_PATH}>Stylesheet</Link>
 					</nav>
 				</div>
 				<div>

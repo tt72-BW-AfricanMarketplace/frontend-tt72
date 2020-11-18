@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
 import axiosAuth from "../../env/utils/axiosAuth";
-// import { axiosAuth } from "../../env/utils/axiosAuth";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -39,14 +38,12 @@ const loginSlice = createSlice({
 			console.log(action.payload);
 			state.isLoggedIn = true;
 			const token = action.payload.payload;
-			// const parsedToken = JSON.parse(token);
 			console.log(token);
 			window.localStorage.setItem("token", token);
 			state.user = action.meta.arg.username;
 			state.status = "idle";
 		},
 		[login.rejected]: (state, action) => {
-			// console.log(action.payload);
 			state.isLoggedIn = false;
 			state.user = null;
 			state.status = "idle";

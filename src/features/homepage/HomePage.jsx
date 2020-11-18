@@ -1,20 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../shared/Header";
-import PATHS from "../../app/routes/paths";
+import { PATHS } from "../../app/routes/routes";
 import layout from "../layout";
 const { Heading, Container, Flex, Link } = layout;
-
-const {
-	HOMEPAGE_PATH,
-	STYLESHEET_PATH,
-	LOGIN_PATH,
-	PORTAL_PATH,
-	SIGNUP_PATH,
-	OWNER_PRODUCTS_PATH,
-	BUYER_PRODUCTS_PATH,
-} = PATHS;
-
 
 const HomeContainer = styled(Container)`
 	height: 80vh;
@@ -46,13 +35,13 @@ const HomePage = () => {
 				<Heading h1>This is the dev-nav, just for us</Heading>
 				<Flex justifyCenter alignCenter>
 					<nav>
-						<Link to={HOMEPAGE_PATH}>Home</Link>
-						<Link to={PORTAL_PATH}>Info Portal</Link>
-						<Link to={LOGIN_PATH}>Login</Link>
-						<Link to={SIGNUP_PATH}>Signup</Link>
-						<Link to={BUYER_PRODUCTS_PATH}>Buyer Products</Link>
-						<Link to={OWNER_PRODUCTS_PATH}>Owner Products</Link>
-						<Link secondary to={STYLESHEET_PATH}>Stylesheet</Link>
+						<Link to={PATHS.HOMEPAGE_PATH}>Home</Link>
+						<Link to={PATHS.PORTAL_PATH}>Info Portal</Link>
+						<Link to={PATHS.LOGIN_PATH}>Login</Link>
+						<Link to={PATHS.SIGNUP_PATH}>Signup</Link>
+						<Link to={PATHS.BUYER_PRODUCTS_PATH}>Buyer Products</Link>
+						<Link to={PATHS.OWNER_PRODUCTS_PATH}>Owner Products</Link>
+						<Link secondary to={PATHS.STYLESHEET_PATH}>Stylesheet</Link>
 					</nav>
 				</Flex>
 			</HomeContainer>
