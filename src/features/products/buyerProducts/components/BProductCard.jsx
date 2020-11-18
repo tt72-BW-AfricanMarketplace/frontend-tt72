@@ -5,6 +5,7 @@ import layout from "../../../layout/";
 import { addToCart } from "../buyerProductSlice";
 const { Heading, Card, Button } = layout;
 
+
 const ProductCard = styled(Card)`
 	background-color: var(--pDark);
 	p {
@@ -24,9 +25,6 @@ const BProductCard = props => {
 	const { product } = props;
 	const { id, owner_id, product_name, all_amount, available_amount, measurement_unit, price, currency } = product;
 	const dispatch = useDispatch();
-	// const addToCart = (idIn) => {
-	// 	console.log(idIn);
-	// }
 
 	return (
 		<ProductCard>
@@ -37,7 +35,7 @@ const BProductCard = props => {
 			<p>Owner ID: {owner_id}</p>
 			<CartButton onClick={() => dispatch(addToCart(product))}>Add To Cart</CartButton>
 		</ProductCard>
-	)
+	);
 };
 
 export default BProductCard;

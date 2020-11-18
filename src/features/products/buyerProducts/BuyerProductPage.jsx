@@ -12,7 +12,8 @@ const Page = styled.div`
 `;
 
 const Banner = styled.div`
-	margin: 3rem 0;
+	margin: 3rem 0 0;
+	border-bottom: 1px solid var(--pLight);
 	width: 100vw;
 	background-color: var(--pDark);
 	height: 10rem;

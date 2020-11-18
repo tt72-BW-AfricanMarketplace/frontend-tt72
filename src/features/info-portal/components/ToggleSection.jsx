@@ -26,7 +26,7 @@ const SFieldset = styled.fieldset`
 	}
 `;
 
-const RadioGroup = ({ groupName, fields, handler }) => {
+export const RadioGroup = ({ groupName, fields, handler }) => {
 	const [selected, setSelected] = useState("");
 
 	const handleClick = (evt) => {
@@ -34,14 +34,11 @@ const RadioGroup = ({ groupName, fields, handler }) => {
 		setSelected(value);
 		handler(evt);
 	};
-
 	const formatFieldName = (str) => {
 		const toReturn = str.split("-").join(" ").charAt(0).toUpperCase()
-			+ str.slice(1).split("-").join(" ")
-			|| str;
+			+ str.slice(1).split("-").join(" ") || str;
 		return toReturn;
-	}
-
+	};
 	return (
 		<SFieldset id={groupName}>
 			{
