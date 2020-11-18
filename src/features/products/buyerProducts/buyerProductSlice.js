@@ -69,27 +69,15 @@ const buyerProductSlice = createSlice({
 			},
 		},
 		removeFromCart: (state, action) => {
-			// const { id } = action.payload;
-			// const indexInCart = state.cart.findIndex(cp => { return (cp.id === id) });
+			const foundEl = state.cart.find(item => { return (item.id === action.payload) });
+			console.log(foundEl);
+			const totalToRemove = Number(foundEl?.product?.price * foundEl?.quantity);
+			console.log(totalToRemove);
+			state.totalPrice -= totalToRemove;
 			state.cart = state.cart.filter(p => {
 				return p.id !== action.payload;
-			})
+			});
 		},
-		// removeFromCart: {
-		// 	reducer: (state, action) => {
-		// 		const { id } = action.payload;
-		// 		const indexInCart = state.cart.findIndex(cp => { return (cp.id === product.id) })
-
-		// 	},
-		// 	prepare: (id) => {
-		// 		return {
-		// 			payload: {
-		// 				id: id
-		// 			}
-		// 		}
-		// 	},
-
-		// },
 	},
 	extraReducers: {},
 });
