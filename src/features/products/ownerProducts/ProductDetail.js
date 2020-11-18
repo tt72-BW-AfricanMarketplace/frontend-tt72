@@ -45,7 +45,7 @@ const ProductDetail = (props) => {
 
             <Container>
                 <form onSubmit={handleSubmit}>
-                    <Flex three wrap>
+                    <Flex column>
                         <label>
                             Item Name
                         <input
@@ -76,7 +76,7 @@ const ProductDetail = (props) => {
                         <label>
                             Available
                         <input
-                                type='text'
+                                type='number'
                                 name='available'
                                 onChange={handleChange}
                                 value={inputValues.available}
