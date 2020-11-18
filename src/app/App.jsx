@@ -8,19 +8,18 @@ function App() {
 	const storedJwt = localStorage.getItem("token");
 	const [jwt, setJwt] = useState(storedJwt || null);
 
-	const getJwt = async () => {
-		const { data } = await axios.get(`/jwt`);
-		localStorage.setItem('token', data.token);
-		setJwt(data.token);
-	};
-
-	const useEffect(() => {
+	useEffect(() => {
+		const getJwt = async () => {
+			const { data } = await axios.get(`/jwt`);
+			localStorage.setItem('token', data.token);
+			setJwt(data.token);
+		};
 		const getCsrfToken = async () => {
 			const { data } = await axios.get('/csrf-token');
 			axios.defaults.headers.post['X-CSRF-Token'] = data.csrfToken;
 		};
+		getJwt();
 		getCsrfToken();
-
 	}, []);
 
 	return (
