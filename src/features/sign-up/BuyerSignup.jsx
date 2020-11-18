@@ -9,6 +9,13 @@ const StyledForm = styled.form`
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
+	div.Input-pair{
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: space-between;
+		width: 30rem;
+	}
 `;
 
 const initialState = {
@@ -18,7 +25,7 @@ const initialState = {
 };
 
 const BuyerSignup = (props) => {
-	const [values, handleChanges, clearForm, errors] = useForm(initialState);
+	const [values, handleChanges, clearForm] = useForm(initialState);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -28,36 +35,44 @@ const BuyerSignup = (props) => {
 
 	return (
 		<StyledForm onSubmit={handleSubmit}>
-			<label>
-				Username
-			<Input
+			<div className="Input-pair">
+				<label htmlFor="username" >
+					Username
+			</label>
+				<Input
 					type="text"
+					id="username"
 					name="username"
 					value={values.username}
 					onChange={handleChanges}
 				/>
+			</div>
+			<div className="Input-pair">
+				<label htmlFor="email">
+					Email
 			</label>
-
-			<label>
-				Email
-			<Input
+				<Input
 					type="email"
+					id="email"
 					name="email"
 					value={values.email}
 					onChange={handleChanges}
 				/>
+			</div>
 
+			<div className="Input-pair">
+				<label htmlFor="password">
+					Password
 			</label>
 
-			<label>
-				Password
 				<Input
 					type="password"
+					id="password"
 					name="password"
 					value={values.password}
 					onChange={handleChanges}
 				/>
-			</label>
+			</div>
 
 			<Button> Submit </Button>
 			{/* <div className="errors">

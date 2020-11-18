@@ -22,7 +22,7 @@ const initialState = {
 // 	const [values, handleChanges, errors] = useForm(initialState);
 // }
 
-const BuyerSignup = (props) => {
+const OwnerSignup = (props) => {
 	return (
 		<form>
 			<label>
@@ -74,4 +74,4 @@ const BuyerSignup = (props) => {
 	);
 };
 
-export default BuyerSignup;
+export default OwnerSignup;
