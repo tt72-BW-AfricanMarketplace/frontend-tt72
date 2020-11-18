@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import layout from "../../../layout/";
-import { addToCart, addToCart2 } from "../buyerProductSlice";
+import { addToCart } from "../buyerProductSlice";
 const { Heading, Card, Button } = layout;
 
 

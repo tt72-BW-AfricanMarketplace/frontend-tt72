@@ -15,12 +15,14 @@ const Form = ({ fields, handleSubmit }) => {
 	let initState = {};
 	fields.forEach(field => initState[field.name] = field.initVal ? field.initVal : "");
 	const [values, handleChanges, clearForm] = useForm(initState);
+
 	const handleSubmitLocal = (evt) => {
 		console.log("FROM FORM ", values);
 		evt.preventDefault();
 		handleSubmit(values);
 		clearForm();
 	}
+
 	return (
 		<StyledForm onSubmit={handleSubmitLocal}>
 			{
@@ -30,6 +32,7 @@ const Form = ({ fields, handleSubmit }) => {
 						<div>
 							<label htmlFor={name}>{name}</label>
 							<Input
+								key={`${name}_${type}_${placeholder}`}
 								name={name}
 								id={name}
 								type={type ? type : "text"}

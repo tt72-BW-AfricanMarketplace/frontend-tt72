@@ -11,11 +11,7 @@ const initialState = {
 export const signupBuyer = createAsyncThunk(
 	"signupBuyer/status",
 	async (userData) => {
-		const { email, password } = userData;
-		console.log("SIGNUPSLICE — userData ", userData);
-
 		const res = await client.signup(userData);
-		console.log("SIGNUPSLICE — res ", res);
 		return res;
 	});
 
@@ -25,18 +21,15 @@ const signupSlice = createSlice({
 	// reducers: {},
 	extraReducers: {
 		[signupBuyer.pending]: (state, action) => {
-			console.log("PENDING — ACTION ", action);
 			state.status = "loading";
 		},
 		[signupBuyer.fulfilled]: (state, action) => {
-			console.log("FULFILLED — ACTION ", action);
 			state.user = action.payload.data.new_user
 			state.token = action.payload.data.token;
 			state.didRegister = true;
 			state.status = "idle";
 		},
 		[signupBuyer.rejected]: (state, action) => {
-			console.log("REJECTED — ACTION ", action);
 			state.didRegister = false;
 			state.status = "rejected";
 			state.error = action.error;

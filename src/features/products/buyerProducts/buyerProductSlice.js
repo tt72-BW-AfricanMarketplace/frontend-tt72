@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import client from "../../../env/api/client";
+import { createSlice } from "@reduxjs/toolkit";
+// import client from "../../../env/api/client";
 
 export const initialState = {
 	status: "idle",
@@ -9,16 +9,13 @@ export const initialState = {
 	product: [],
 };
 
-
-
-
 const buyerProductSlice = createSlice({
 	name: "buyerProducts",
 	initialState,
 	reducers: {
 		addToCart: {
 			reducer: (state, action) => {
-				const { id, product, quantity } = action.payload;
+				const { product, quantity } = action.payload;
 				const indexInCart = state.cart.findIndex(cp => { return (cp.id === product.id) });
 				if (indexInCart > -1) {
 					const prevItem = { ...state.cart[indexInCart] };

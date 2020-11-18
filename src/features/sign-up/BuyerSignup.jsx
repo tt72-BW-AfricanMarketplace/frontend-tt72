@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signupBuyer } from "./signupSlice";
 import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";

@@ -17,8 +17,8 @@ const ButtonSample = () => {
 				<Button>Primary Button</Button>
 				<Button secondary>Secondary Button</Button>
 				<Button loading>Primary Loading Button</Button>
-				<Link>Primary Link</Link>
-				<Link secondary>Secondary Link</Link>
+				<Link to="/">Primary Link</Link>
+				<Link to="/" secondary="true">Secondary Link</Link>
 			</Container>
 		</div>
 	)

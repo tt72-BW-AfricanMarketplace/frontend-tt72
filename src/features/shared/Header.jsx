@@ -53,7 +53,7 @@ const Header = props => {
 							<Link to={PATHS.LOGIN_PATH}>Login</Link>
 							: <Button onClick={handleLogout}>Logout</Button>
 						}
-						<Link secondary to={PATHS.STYLESHEET_PATH}>Stylesheet</Link>
+						<Link secondary="true" to={PATHS.STYLESHEET_PATH}>Stylesheet</Link>
 					</nav>
 				</div>
 				<div>
