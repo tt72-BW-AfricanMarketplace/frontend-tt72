@@ -48,9 +48,9 @@ const CartItem = props => {
 	const { id, product, quantity } = props.item;
 	const { price, currency, product_name, measurement_unit } = product;
 	
-	const handleDeletion = () => {
-		dispatch(removeFromCart(id));
-	}
+	// const handleDeletion = () => {
+	// 	dispatch(removeFromCart(id));
+	// }
 
 	return (
 		<SItem>
@@ -59,13 +59,17 @@ const CartItem = props => {
 			<p>Amount: {quantity} {measurement_unit}</p>
 			<p>Price: ${Number(quantity * price).toFixed(2)} {currency}</p>
 			</div>
-			<RemoveButton onClick={handleDeletion}>Remove</RemoveButton>
+			<RemoveButton onClick={() => { props.handleDeletion(id)}}>Remove</RemoveButton>
 		</SItem>
 	)
 }
 
 const Cart = props => {
 	const cart = useSelector(state => state.buyerProduct.cart);
+	const dispatch = useDispatch();
+	const handleDeletion = (id) => {
+		dispatch(removeFromCart(id));
+	}
 	return (
 		<SCart>
 			<h1>Cart</h1>
@@ -73,7 +77,7 @@ const Cart = props => {
 				cart.length === 0 
 				? (<p>You don't have any items in your cart!</p>)
 				: cart.map(item => {
-					return (<CartItem key={item.id} item={item} />);
+					return (<CartItem key={item.id} item={item} handleDeletion={handleDeletion} />);
 				})
 			}
 		</SCart>

@@ -52,7 +52,7 @@ const BProductCard = props => {
 			<p>ID: {id}</p>
 			<p>Owner ID: {owner_id}</p>
 			<div className="cart-utils">
-				<CartButton onClick={() => dispatch(addToCart2(product, quantity))}>Add To Cart</CartButton>
+				<CartButton onClick={() => dispatch(addToCart(product, quantity))}>Add To Cart</CartButton>
 				<input type="number" name="quantity" id="quantity" value={quantity} onChange={handleChange} />
 			</div>
 		</ProductCard>

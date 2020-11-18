@@ -45,10 +45,10 @@ const buyerProductSlice = createSlice({
 	name: "buyerProducts",
 	initialState,
 	reducers: {
-		addToCart: (state, action) => {
+		addToCart2: (state, action) => {
 			state.cart.push(action.payload);
 		},
-		addToCart2: {
+		addToCart: {
 			reducer: (state, action) => {
 				const { id, product, quantity } = action.payload;
 				const indexInCart = state.cart.findIndex(cp => { return (cp.id === product.id) });
@@ -67,16 +67,29 @@ const buyerProductSlice = createSlice({
 					payload: { id: product.id, product, quantity: Number(quantity) }
 				};
 			},
-			removeFromCart: {
-				reducer: (state, action) => {
+		},
+		removeFromCart: (state, action) => {
+			// const { id } = action.payload;
+			// const indexInCart = state.cart.findIndex(cp => { return (cp.id === id) });
+			state.cart = state.cart.filter(p => {
+				return p.id !== action.payload;
+			})
+		},
+		// removeFromCart: {
+		// 	reducer: (state, action) => {
+		// 		const { id } = action.payload;
+		// 		const indexInCart = state.cart.findIndex(cp => { return (cp.id === product.id) })
 
-				},
-				prepare: (id) => {
+		// 	},
+		// 	prepare: (id) => {
+		// 		return {
+		// 			payload: {
+		// 				id: id
+		// 			}
+		// 		}
+		// 	},
 
-				},
-
-			},
-		}
+		// },
 	},
 	extraReducers: {},
 });
