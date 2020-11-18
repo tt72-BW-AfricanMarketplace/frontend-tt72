@@ -1,5 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import client from "../../../env/api/client";
+
+// products: [
+// 	{
+// 		"id": 0,
+// 		"owner_id": 1,
+// 		"product_name": "Onions",
+// 		"all_amount": 30.5,
+// 		"available_amount": 30,
+// 		"measurement_unit": "Kg",
+// 		"price": 1,
+// 		"currency": "USD"
+// 	},
+// 	{
+// 		"id": 1,
+// 		"owner_id": 1,
+// 		"product_name": "French Bread",
+// 		"all_amount": 20,
+// 		"available_amount": 14,
+// 		"measurement_unit": "Kg",
+// 		"price": 0.5,
+// 		"currency": "USD"
+// 	},
+// 	{
+// 		"id": 2,
+// 		"owner_id": 2,
+// 		"product_name": "Pumpkins",
+// 		"all_amount": 15,
+// 		"available_amount": 12,
+// 		"measurement_unit": "Kg",
+// 		"price": 2,
+// 		"currency": "USD"
+// 	},
+// ],
 
 export const initialState = {
 	status: "idle",
@@ -7,46 +39,28 @@ export const initialState = {
 	cart: [],
 	totalPrice: 0,
 	product: [],
-};
+}
 
 const buyerProductSlice = createSlice({
 	name: "buyerProducts",
 	initialState,
 	reducers: {
-		addToCart: {
+		addToCart: (state, action) => {
+			state.cart.push(action.payload);
+		},
+		addToCart2: {
 			reducer: (state, action) => {
-				const { product, quantity } = action.payload;
-				const indexInCart = state.cart.findIndex(cp => { return (cp.id === product.id) });
-				if (indexInCart > -1) {
-					const prevItem = { ...state.cart[indexInCart] };
-					prevItem.quantity += quantity;
-					state.cart[indexInCart] = prevItem;
-					state.totalPrice += (action.payload.quantity * action.payload.product.price);
-				} else {
-					state.cart.push(action.payload);
-					state.totalPrice += (action.payload.quantity * action.payload.product.price);
-				}
+				state.cart.push(action.payload);
+				state.totalPrice += (action.payload.quantity * action.payload.product.price);
 			},
 			prepare: (product, quantity) => {
-				return {
-					payload: { id: product.id, product, quantity: Number(quantity) }
-				};
+				return { payload: { product, quantity } };
 			},
-		},
-		removeFromCart: (state, action) => {
-			const foundEl = state.cart.find(item => { return (item.id === action.payload) });
-			console.log(foundEl);
-			const totalToRemove = Number(foundEl?.product?.price * foundEl?.quantity);
-			console.log(totalToRemove);
-			state.totalPrice -= totalToRemove;
-			state.cart = state.cart.filter(p => {
-				return p.id !== action.payload;
-			});
-		},
+		}
 	},
 	extraReducers: {},
 });
 
-export const { addToCart, removeFromCart } = buyerProductSlice.actions;
+export const { addToCart, addToCart2 } = buyerProductSlice.actions;
 
 export default buyerProductSlice.reducer;

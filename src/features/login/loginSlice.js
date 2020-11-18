@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import axios from "axios"
-// import axiosAuth from "../../env/utils/axiosAuth";
-import client from "../../env/api/client";
+import axios from "axios"
+import axiosAuth from "../../env/utils/axiosAuth";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -12,18 +11,19 @@ const initialState = {
 	error: undefined,
 }
 
-export const login = createAsyncThunk(
-	"login/status",
-	async (userData) => {
-		const res = await client.login(userData);
-		return res;
-	});
+export const login = createAsyncThunk("login/status", async (userData) => {
+	const { username, password } = userData;
+	console.log(username, password);
+	const response = await axios.post("http://localhost:5000/api/login", userData);
+	console.log(response);
+	return response.data;
+});
 
-export const logout = createAsyncThunk(
-	"logout/status",
-	async () => {
-		return 4;
-	});
+export const logout = createAsyncThunk("logout/status", async () => {
+	const response = await axiosAuth().post("logout");
+	console.log(response);
+	return response;
+})
 
 const loginSlice = createSlice({
 	name: "login",
@@ -31,35 +31,39 @@ const loginSlice = createSlice({
 	reducers: {},
 	extraReducers: {
 		[login.pending]: (state, action) => {
+			console.log(action.payload);
 			state.status = "loading";
 		},
 		[login.fulfilled]: (state, action) => {
+			console.log(action.payload);
 			state.isLoggedIn = true;
-			const token = action.payload.data.token;
+			const token = action.payload.payload;
+			console.log(token);
 			window.localStorage.setItem("token", token);
-			state.user = action.payload.data.user;
+			state.user = action.meta.arg.username;
 			state.status = "idle";
 		},
 		[login.rejected]: (state, action) => {
 			state.isLoggedIn = false;
 			state.user = null;
 			state.status = "idle";
-			state.error = action.error?.message ?? action.error ?? "unknown";
+			state.error = action.payload;
 		},
-		// [logout.pending]: (state, action) => {
-		// 	state.status = "loading";
-		// },
-		// [logout.fulfilled]: (state, action) => {
-		// 	window.localStorage.removeItem("token");
-		// 	state.isLoggedIn = false;
-		// 	state.user = null;
-		// 	state.status = "idle";
-		// },
-		// [logout.rejected]: (state, action) => {
-		// 	state.isLoggedIn = true;
-		// 	state.error = action.payload.error;
-		// }
+		[logout.pending]: (state, action) => {
+			state.status = "loading";
+		},
+		[logout.fulfilled]: (state, action) => {
+			window.localStorage.removeItem("token");
+			state.isLoggedIn = false;
+			state.user = null;
+			state.status = "idle";
+		},
+		[logout.rejected]: (state, action) => {
+			state.isLoggedIn = true;
+			state.error = action.payload.error;
+		}
 	}
+
 });
 
 export default loginSlice.reducer;

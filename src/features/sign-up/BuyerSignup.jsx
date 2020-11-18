@@ -1,6 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { signupBuyer } from "./signupSlice";
 import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
@@ -29,14 +27,12 @@ const initialState = {
 };
 
 const BuyerSignup = (props) => {
+	// const [values, handleChanges, clearForm] = useForm(initialState);
 	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
-	const dispatch = useDispatch();
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(values);
-		console.log(errors);
-		dispatch(signupBuyer(values));
+		console.log(errors)
 		clearForm();
 
 	}
@@ -52,7 +48,7 @@ const BuyerSignup = (props) => {
 			<div className="Input-pair">
 				<label htmlFor="username" >
 					Username
-				</label>
+			</label>
 				<Input
 					type="text"
 					id="username"

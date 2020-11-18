@@ -15,33 +15,24 @@ const Form = ({ fields, handleSubmit }) => {
 	let initState = {};
 	fields.forEach(field => initState[field.name] = field.initVal ? field.initVal : "");
 	const [values, handleChanges, clearForm] = useForm(initState);
-
 	const handleSubmitLocal = (evt) => {
-		console.log("FROM FORM ", values);
 		evt.preventDefault();
 		handleSubmit(values);
 		clearForm();
 	}
-
 	return (
 		<StyledForm onSubmit={handleSubmitLocal}>
 			{
 				fields.map(field => {
 					const { name, type, placeholder, className } = field;
 					return (
-						<div>
-							<label htmlFor={name}>{name}</label>
-							<Input
-								key={`${name}_${type}_${placeholder}`}
-								name={name}
-								id={name}
-								type={type ? type : "text"}
-								placeholder={placeholder ? placeholder : name}
-								className={className ? className : ""}
-								value={values[name]}
-								onChange={handleChanges} />
-						</div>
-					);
+						<Input
+							name={name}
+							type={type ? type : "text"}
+							placeholder={placeholder ? placeholder : name}
+							className={className ? className : ""}
+							value={values[name]}
+							onChange={handleChanges} />);
 				})
 			}
 			<Button secondary>Submit</Button>

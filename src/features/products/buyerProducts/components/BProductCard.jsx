@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import layout from "../../../layout/";
-import { addToCart } from "../buyerProductSlice";
+import { addToCart, addToCart2 } from "../buyerProductSlice";
 const { Heading, Card, Button } = layout;
 
 
@@ -52,7 +52,7 @@ const BProductCard = props => {
 			<p>ID: {id}</p>
 			<p>Owner ID: {owner_id}</p>
 			<div className="cart-utils">
-				<CartButton onClick={() => dispatch(addToCart(product, quantity))}>Add To Cart</CartButton>
+				<CartButton onClick={() => dispatch(addToCart2(product, quantity))}>Add To Cart</CartButton>
 				<input type="number" name="quantity" id="quantity" value={quantity} onChange={handleChange} />
 			</div>
 		</ProductCard>

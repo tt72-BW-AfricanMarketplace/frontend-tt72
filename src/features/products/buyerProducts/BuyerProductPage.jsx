@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Header from "../../shared/Header";
 import Guide from "./components/Guide";
 import BProductCard from "./components/BProductCard";
-import Cart from "./components/Cart";
 import SplitPane from "./components/SplitPane";
-import { fetchProduct } from "../productSlice";
+import { fetchAllProducts, fetchProduct } from "../productSlice";
 
 const Page = styled.div`
 	display: flex;
@@ -55,13 +54,10 @@ const BuyerProductPage = props => {
 					left={
 						<Guide key="left" />
 					}
-					middle={
+					right={
 						products.map(product => {
 							return <BProductCard key={product.id} product={product} />
 						})
-					}
-					right={
-						<Cart />
 					}
 				/>
 			</Main>

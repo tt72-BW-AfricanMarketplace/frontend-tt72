@@ -41,7 +41,7 @@ const HomePage = () => {
 						<Link to={PATHS.SIGNUP_PATH}>Signup</Link>
 						<Link to={PATHS.BUYER_PRODUCTS_PATH}>Buyer Products</Link>
 						<Link to={PATHS.OWNER_PRODUCTS_PATH}>Owner Products</Link>
-						<Link secondary="true" to={PATHS.STYLESHEET_PATH}>Stylesheet</Link>
+						<Link secondary to={PATHS.STYLESHEET_PATH}>Stylesheet</Link>
 					</nav>
 				</Flex>
 			</HomeContainer>

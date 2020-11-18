@@ -3,88 +3,28 @@ import axios from "axios";
 const client = {
 	BASE_URL: "https://african--market.herokuapp.com/api/",
 }
-
-
-
-//................. AXIOS CREATORS ........................//
 client.axios = () => {
 	return axios.create({
-		// baseURL: "https://african--market.herokuapp.com/api/",
-		baseURL: client.BASE_URL,
+		baseURL: "https://african--market.herokuapp.com/api/",
 	});
 };
 
-
-
-//................. LOGIN & SIGN UP ........................//
-client.login = async (userData) => {
-	console.log("FROM CLIENT.LOGIN — userData", userData);
-	console.log("FROM CLIENT.LOGIN ", userData.email, userData.password);
-	const res = await client.axios().post("auth/login", userData);
-	return res;
-};
-// client.login = login;
-
-client.signup = async (userData) => {
-	const { email, password } = userData;
-	const res = await client.axios().post("auth/register",
-		{
-			email,
-			password,
-		}
-	);
-	return res;
-};
-
-
-
-//................. USERS  ........................//
-client.getAllUsers = async () => {
-	const res = await client.axios().get("users/");
-	return res;
-};
-
-client.getUser = async (userId) => {
-	const res = await client.axios().get(`users/${userId}`);
-	return res;
-};
-
-client.editUser = async (userId, user) => {
-	const res = await client.axios().put(`users/${userId}`, user);
+const getProductById = async (id) => {
+	const res = await client.axios().get(`products/${id}`);
 	return res;
 }
+client.getProductById = getProductById;
 
-client.deleteUser = async (userId) => {
-	const res = await client.axios().delete(`users/${userId}`);
+const postProduct = async (id, product) => {
+	const res = await client.axios().post(`products/${id}`, product);
 	return res;
-};
+}
+client.postProduct = postProduct;
 
-
-
-//................. PRODUCTS ........................//
-client.getItemsByProductId = async (productId) => {
-	const res = await client.axios().get(`items/${productId}`);
+const getAllProducts = async () => {
+	const res = await client.axios().get("products");
 	return res;
-};
-
-client.addItems = async (items) => {
-	const res = await client.axios().post(`items/`, items);
-	return res;
-};
-
-client.getProductsByUserId = async (userId) => {
-	const res = await client.axios().get(`products/${userId}`);
-	return res;
-};
-
-client.addProductByUserId = async (userId, product) => {
-	const res = await client.axios().post(`products/${userId}`, product);
-	return res;
-};
-
-client.editProduct = async (userId, productId, product) => {
-	const res = await client.axios().post(`products/${userId}/product/${productId}`, product);
-	return res;
-};
+}
+client.getAllProducts = getAllProducts;
 
 export default client;
