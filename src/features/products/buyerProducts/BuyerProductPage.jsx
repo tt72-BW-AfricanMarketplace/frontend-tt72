@@ -2,7 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Header from "../../shared/Header";
+import Guide from "./components/Guide";
 import BProductCard from "./components/BProductCard";
+import SplitPane from "./components/SplitPane";
 
 const Page = styled.div`
 	display: flex;
@@ -33,11 +35,16 @@ const BuyerProductPage = props => {
 			<Banner>
 				<h1>Buyer Products Page</h1>
 			</Banner>
-			{
-				products.map(product => {
-					return <BProductCard product={product} />
-				})
-			}
+			<SplitPane
+				left={
+					<Guide />
+				}
+				right={
+					products.map(product => {
+						return <BProductCard product={product} />
+					})
+				}
+			/>
 		</Page>
 	);
 }
