@@ -36,7 +36,7 @@ const SignupPage = props => {
 	const toggle = () => {
 		setIsBuyer(!isBuyer);
 	}
-	
+
 	return (
 		<>
 			<Header className="cust" />
@@ -50,6 +50,7 @@ const SignupPage = props => {
 
 			</CustomHeader>
 		</>
+
 	)
 }
 
