@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import layout from '../../layout';
 import Header from "../../shared/Header";
+import { putOwnerProduct } from './store/actions';
 
 
 const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
 
 const initialItem = {
-    item_name: '',
-    amount: 0,
-    unit: '',
-    available: 0,
+    product_name: '',
+    all_amount: 0,
+    measurement_unit: '',
+    // available: 0,
     price: '',
     currency: '',
 }
@@ -20,6 +21,8 @@ const ProductDetail = (props) => {
     const { id } = useParams();
     const { isLoading, products, error } = props;
     const [inputValues, setInputValues] = useState(initialItem);
+    const userId = 1;
+    const { push } = useHistory();
 
     useEffect(() => {
         let product = products.find(product => product.id == id)
@@ -37,6 +40,12 @@ const ProductDetail = (props) => {
         e.preventDefault();
 
         // put functionality
+
+        props.putOwnerProduct(userId, id, inputValues)
+
+        push(`/owner/products`);
+
+
     }
 
     return (
@@ -50,30 +59,30 @@ const ProductDetail = (props) => {
                             Item Name
                         <input
                                 type='text'
-                                name='item_name'
+                                name='product_name'
                                 onChange={handleChange}
-                                value={inputValues.item_name}
+                                value={inputValues.product_name}
                             />
                         </label>
                         <label>
                             Amount
                         <input
                                 type='number'
-                                name='amount'
+                                name='all_amount'
                                 onChange={handleChange}
-                                value={inputValues.amount}
+                                value={inputValues.all_amount}
                             />
                         </label>
                         <label>
                             Unit
                         <input
                                 type='text'
-                                name='unit'
+                                name='measurement_unit'
                                 onChange={handleChange}
-                                value={inputValues.unit}
+                                value={inputValues.measurement_unit}
                             />
                         </label>
-                        <label>
+                        {/* <label>
                             Available
                         <input
                                 type='number'
@@ -81,7 +90,7 @@ const ProductDetail = (props) => {
                                 onChange={handleChange}
                                 value={inputValues.available}
                             />
-                        </label>
+                        </label> */}
                         <label>
                             Price
                         <input
@@ -122,5 +131,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { })(ProductDetail)
+export default connect(mapStateToProps, { putOwnerProduct })(ProductDetail)
 

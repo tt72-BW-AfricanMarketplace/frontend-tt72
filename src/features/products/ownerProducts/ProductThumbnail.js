@@ -2,6 +2,9 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import layout from '../../layout';
 import ProductDetail from './ProductDetail';
+import { deleteOwnerProduct } from './store/actions';
+import { connect } from 'react-redux'
+
 
 const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
 
@@ -9,6 +12,8 @@ const ProductThumbnail = (props) => {
 
     const handleDelete = () => {
         //insert stuff here
+
+        
     }
 
     const { product, index } = props;
@@ -30,6 +35,14 @@ const ProductThumbnail = (props) => {
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+        isLoading: state.ownerProduct.isLoading,
+        products: state.ownerProduct.productsData,
+        error: state.ownerProduct.error,
+        loadNewProduct: state.ownerProduct.loadNewProduct
+    }
+}
 
 
-export default ProductThumbnail;
+export default connect(mapStateToProps, { deleteOwnerProduct })(ProductThumbnail)

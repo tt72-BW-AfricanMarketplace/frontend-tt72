@@ -5,6 +5,12 @@ import {
     POST_OWNER_PRODUCT_START,
     POST_OWNER_PRODUCT_SUCCESS,
     POST_OWNER_PRODUCT_FAILURE,
+    PUT_OWNER_PRODUCT_START,
+    PUT_OWNER_PRODUCT_SUCCESS,
+    PUT_OWNER_PRODUCT_FAILURE,
+    DELETE_OWNER_PRODUCT_START,
+    DELETE_OWNER_PRODUCT_SUCCESS,
+    DELETE_OWNER_PRODUCT_FAILURE,
 } from '../actions'
 
 const initialState = {
@@ -74,6 +80,71 @@ export const ownerProductReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case POST_OWNER_PRODUCT_START: 
+            return {
+                ...state,
+                isLoading: true, 
+                error: '',
+                loadNewProduct: true,
+                //double check this one
+            }
+        case POST_OWNER_PRODUCT_SUCCESS: 
+            return {
+                ...state,
+                isLoading: false,
+                productsData: action.payload, //Not sure about this one
+                loadNewProduct: false,
+                //double check this one
+            }
+        case POST_OWNER_PRODUCT_FAILURE: 
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+                loadNewProduct: false,
+                //double check this one
+            }
+        case PUT_OWNER_PRODUCT_START: 
+            return {
+                ...state,
+                isLoading: true,
+                error: ''
+                //double check this one
+            }
+        case PUT_OWNER_PRODUCT_SUCCESS: 
+            return {
+                ...state,
+                isLoading: false,
+                productsData: action.payload // not sure about this one
+                //double check this one
+            }
+        case PUT_OWNER_PRODUCT_FAILURE: 
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+                //double check this one
+            }
+        case DELETE_OWNER_PRODUCT_START: 
+            return {
+                ...state,
+                isLoading: true,
+                err: ''
+            }
+        case DELETE_OWNER_PRODUCT_SUCCESS: 
+            return {
+                ...state,
+                isLoading: false,
+                productsData: action.payload
+                // double check this one
+            }
+        case DELETE_OWNER_PRODUCT_FAILURE: 
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+                //double check this one
             }
         default:
             return state;
