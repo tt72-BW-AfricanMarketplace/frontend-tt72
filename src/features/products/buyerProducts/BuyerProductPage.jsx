@@ -1,14 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Header from "../../shared/Header";
 import Guide from "./components/Guide";
 import BProductCard from "./components/BProductCard";
 import SplitPane from "./components/SplitPane";
+import { fetchAllProducts, fetchProduct } from "../productSlice";
 
 const Page = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
+`;
+
+const Main = styled.div`
+	height: 76vh;
 `;
 
 const Banner = styled.div`
@@ -29,23 +34,33 @@ const Banner = styled.div`
 	}
 `;
 const BuyerProductPage = props => {
-	const products = useSelector(state => state.buyerProduct.products);
+	const products = useSelector(state => state.product?.products ?? []);
+	// const [res, setRes] = useState({});
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchProduct(1));
+		// dispatch(fetchAllProducts());
+	}, [dispatch])
+
 	return (
 		<Page>
 			<Header />
 			<Banner>
 				<h1>Buyer Products Page</h1>
 			</Banner>
-			<SplitPane
-				left={
-					<Guide />
-				}
-				right={
-					products.map(product => {
-						return <BProductCard product={product} />
-					})
-				}
-			/>
+			<Main>
+				<SplitPane
+					left={
+						<Guide key="left" />
+					}
+					right={
+						products.map(product => {
+							return <BProductCard key={product.id} product={product} />
+						})
+					}
+				/>
+			</Main>
 		</Page>
 	);
 }

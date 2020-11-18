@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import layout from "../../../layout/";
-import { addToCart } from "../buyerProductSlice";
+import { addToCart, addToCart2 } from "../buyerProductSlice";
 const { Heading, Card, Button } = layout;
 
 
@@ -11,20 +11,38 @@ const ProductCard = styled(Card)`
 	p {
 		font-size: 1.6rem;
 	}
+	div.cart-utils {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: center;
+		align-items: center;
+		input {
+			width: 30px;
+			height: 30px;
+		}
+	}
 `;
 
 const CartButton = styled(Button)`
 	width: 100px;
 	height: 30px;
 	font-size: 1.6rem;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	border-radius: 4px;
 `;
 
 const BProductCard = props => {
+	const [quantity, setQuantity] = useState(1);
+
 	const { product } = props;
 	const { id, owner_id, product_name, all_amount, available_amount, measurement_unit, price, currency } = product;
 	const dispatch = useDispatch();
+
+	const handleChange = (evt) => {
+		evt.preventDefault();
+		const { value } = evt.target;
+		setQuantity(value);
+	}
 
 	return (
 		<ProductCard>
@@ -33,7 +51,10 @@ const BProductCard = props => {
 			<p>Price: ${price.toFixed(2)} {currency} per {measurement_unit}</p>
 			<p>ID: {id}</p>
 			<p>Owner ID: {owner_id}</p>
-			<CartButton onClick={() => dispatch(addToCart(product))}>Add To Cart</CartButton>
+			<div className="cart-utils">
+				<CartButton onClick={() => dispatch(addToCart2(product, quantity))}>Add To Cart</CartButton>
+				<input type="number" name="quantity" id="quantity" value={quantity} onChange={handleChange} />
+			</div>
 		</ProductCard>
 	);
 };

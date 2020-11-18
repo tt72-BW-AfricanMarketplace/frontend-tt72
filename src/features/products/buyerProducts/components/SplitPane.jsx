@@ -5,11 +5,12 @@ const Parent = styled.div`
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
-	height: 80vh;
+	/* height: 76.6vh; */
+	height: 100%;
 `;
 
 const Left = styled.div`
-	width: 20%;
+	width: 15%;
 	height: 100%;
 `;
 
