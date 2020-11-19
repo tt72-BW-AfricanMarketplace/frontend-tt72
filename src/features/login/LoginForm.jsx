@@ -1,8 +1,10 @@
 // import { useForm } from "../../hooks/useForm";
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+// import { login } from "./loginSlice";
+import { login } from "../../app/store/slices/userSlice";
 import Form from "../shared/Form";
-import { useDispatch } from "react-redux";
-import { login } from "./loginSlice";
 import layout from "../layout";
 import styled from "styled-components";
 const { Container, Heading } = layout;
@@ -16,10 +18,10 @@ const FormContainer = styled(Container)`
 
 const loginValues = [
 	{
-		name: "username",
-		type: "text",
-		placeholder: "username",
-		className: "username-field",
+		name: "email",
+		type: "email",
+		placeholder: "email",
+		className: "email-field",
 	},
 	{
 		name: "password",
@@ -30,10 +32,19 @@ const loginValues = [
 ];
 
 const LoginForm = (props) => {
-	// const loginState = useSelector(state => state.login);
+	// const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+	const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 	const dispatch = useDispatch();
+	const { push } = useHistory();
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			push("/info-portal");
+		}
+	}, [isLoggedIn, push]);
+
 	const handleSubmit = (values) => {
-		console.log(values);
+		console.log("FROM LOGINFORM ", values);
 		dispatch(login(values));
 	}
 	return (

@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Header from "../../shared/Header";
 import Guide from "./components/Guide";
 import BProductCard from "./components/BProductCard";
+import Cart from "./components/Cart";
 import SplitPane from "./components/SplitPane";
-import { fetchAllProducts, fetchProduct } from "../productSlice";
+import { fetchAllProducts } from "../productSlice";
 
 const Page = styled.div`
 	display: flex;
@@ -33,15 +34,20 @@ const Banner = styled.div`
 		text-decoration: none;
 	}
 `;
+
+const ProductGallery = styled.div`
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+`;
+
 const BuyerProductPage = props => {
 	const products = useSelector(state => state.product?.products ?? []);
-	// const [res, setRes] = useState({});
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchProduct(1));
-		// dispatch(fetchAllProducts());
-	}, [dispatch])
+		dispatch(fetchAllProducts());
+	}, [dispatch]);
 
 	return (
 		<Page>
@@ -54,10 +60,17 @@ const BuyerProductPage = props => {
 					left={
 						<Guide key="left" />
 					}
+					middle={
+						<ProductGallery>
+							{
+								products.map(product => {
+									return <BProductCard key={product.id} product={product} />
+								})
+							}
+						</ProductGallery>
+					}
 					right={
-						products.map(product => {
-							return <BProductCard key={product.id} product={product} />
-						})
+						<Cart />
 					}
 				/>
 			</Main>

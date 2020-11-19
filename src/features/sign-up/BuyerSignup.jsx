@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+// import { signup } from "./signupSlice";
+import { signup } from "../../app/store/slices/userSlice";
 import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
@@ -30,21 +34,21 @@ const initialState = {
 };
 
 const BuyerSignup = (props) => {
-	// const [values, handleChanges, clearForm] = useForm(initialState);
-	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
+	const [values, errors, disabled, handleChanges, clearForm] = useFormError(initialState, schema)
+	const dispatch = useDispatch();
+	const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+	const { push } = useHistory();
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(values);
-		console.log(errors)
+	useEffect(() => {
+		if (isLoggedIn) {
+			push("/info-portal");
+		}
+	}, [isLoggedIn, push])
+
+	const handleSubmit = (evt) => {
+		evt.preventDefault();
+		dispatch(signup(values));
 		clearForm();
-	}
-
-	const handleChanges = evt => {
-		// e.preventDefault();
-		handleChange(evt);
-		console.log(values);
-		console.log(errors);
 	}
 
 	return (
@@ -52,7 +56,7 @@ const BuyerSignup = (props) => {
 			<div className="Input-pair">
 				<label htmlFor="username" >
 					Username
-			</label>
+				</label>
 				<Input
 					type="text"
 					id="username"

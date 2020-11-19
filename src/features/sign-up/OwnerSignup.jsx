@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "../../app/store/slices/userSlice";
+// import { signup } from "./signupSlice";
 import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
@@ -79,7 +83,7 @@ const OwnerSignup = (props) => {
 				/>
 			</div>
 
-			<div classname="Input-pair">
+			<div className="Input-pair">
 				<label htmlFor="password">
 					Password
 				</label>
@@ -100,7 +104,7 @@ const OwnerSignup = (props) => {
 					type="text"
 					id="companyname"
 					name="companyname"
-					value={values.companyname}
+					value={values.companyName}
 					onChange={handleChange}
 				/>
 			</div>
