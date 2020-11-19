@@ -14,7 +14,8 @@ export const addNewProduct = createAsyncThunk(
 		const res = await client.postProduct(id, initProduct);
 		return res.data;
 	}
-)
+);
+
 export const fetchProduct = createAsyncThunk(
 	"product/fetchProduct",
 	async (id) => {
@@ -22,10 +23,10 @@ export const fetchProduct = createAsyncThunk(
 		return res.data;
 	}
 );
+
 export const fetchAllProducts = createAsyncThunk(
 	"products/fetchAllProducts",
 	async () => {
-		// const data = axiosAuth().get(`products`);
 		const res = await client.getAllProducts();
 		return res.data;
 	}
