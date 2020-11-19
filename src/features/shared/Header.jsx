@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../login/loginSlice";
@@ -35,16 +34,13 @@ const Nav = styled.nav`
 	display: ${pr => pr.show ? "flex" : "none"};
 	width: 100vw;
 	background-color: var(--pDarker);
-	/* display: flex; */
 	flex-flow: row nowrap;
 	justify-content: space-between;
-	/* position: absolute; */
 `;
 
 const Header = props => {
 	const dispatch = useDispatch();
 	const isLoggedIn = useSelector(state => state.login.isLoggedIn);
-	const { push } = useHistory();
 	const [navOpen, setNavOpen] = useState(false);
 
 	const handleLogout = () => {
@@ -54,12 +50,6 @@ const Header = props => {
 	const toggleNav = () => {
 		setNavOpen(!navOpen);
 	}
-
-	// useEffect(() => {
-	// 	if (isLoggedIn) {
-	// 		push("/info-portal");
-	// 	}
-	// }, [isLoggedIn, push]);
 
 	return (
 		<>
@@ -83,23 +73,21 @@ const Header = props => {
 
 			<Nav show={navOpen}>
 				<Link to={PATHS.HOMEPAGE_PATH}>Home</Link>
-				{/* <Link to={PATHS.PORTAL_PATH}>Info Portal</Link> */}
-				{isLoggedIn ?
+				{isLoggedIn
+					?
 					<>
+						<Link to={PATHS.PORTAL_PATH}>Info Portal</Link>
 						<Link to={PATHS.OWNER_PRODUCTS_PATH}>Owner Products</Link>
 						<Link to={PATHS.BUYER_PRODUCTS_PATH}>Buyer Products</Link>
 						<Button onClick={handleLogout}>Logout</Button>
 					</>
-					: <>
+					:
+					<>
 						<Link to={PATHS.LOGIN_PATH}>Login</Link>
 						<Link to={PATHS.SIGNUP_PATH}>Signup</Link>
 					</>
 				}
-				{!isLoggedIn
-				}
-				{/* <Link secondary="true" to={PATHS.STYLESHEET_PATH}>Stylesheet</Link> */}
 			</Nav>
-
 		</>
 	);
 }

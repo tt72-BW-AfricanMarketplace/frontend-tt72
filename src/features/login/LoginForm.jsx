@@ -39,9 +39,6 @@ const LoginForm = (props) => {
 		if (isLoggedIn) {
 			push("/info-portal");
 		}
-		// else {
-		// 	push("/login")
-		// }
 	}, [isLoggedIn, push]);
 
 	const handleSubmit = (values) => {
