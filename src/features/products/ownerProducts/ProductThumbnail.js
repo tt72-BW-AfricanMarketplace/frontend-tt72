@@ -14,7 +14,6 @@ const ProductThumbnail = (props) => {
     const ownerId = 1 //change later
 
     const handleDelete = () => {
-        //insert stuff here
         props.deleteOwnerProduct(ownerId, product.id)
         setRefresh(true)
     }

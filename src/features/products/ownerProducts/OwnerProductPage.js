@@ -23,13 +23,12 @@ const OwnerProductPage = (props) => {
     const [ addActive, setAddActive ] = useState(false)
     const [formItem, setFormItem] = useState(initialItem)
     const [refresh, setRefresh] = useState(false)
-    ///new state
     const id = 1; // fix with log in token later
 
     useEffect(() => {
         props.fetchOwnerProducts(id)
         setRefresh(false)
-    }, [refresh, props.loadNewProduct])
+    }, [refresh])
 
     const handleClick = () => {
         setAddActive(!addActive)

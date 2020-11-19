@@ -44,6 +44,7 @@ const ProductDetail = (props) => {
         props.putOwnerProduct(userId, id, inputValues)
         //update passed prop state
 
+
         push(`/owner/products`);
 
 
