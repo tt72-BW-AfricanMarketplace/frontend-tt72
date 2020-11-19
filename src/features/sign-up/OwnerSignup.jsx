@@ -1,14 +1,27 @@
 import React from "react";
-import useForm from "../../hooks/useForm";
+import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
 import layout from "../layout";
+import schema from "./OwnerSignupSchema"
+// import { createImmutableStateInvariantMiddleware } from "@reduxjs/toolkit";
+
 const { Button } = layout;
 
 const StyledForm = styled.form`
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
+	div.Input-pair{
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: space-between;
+		width: 30rem;
+		input{
+			width: 20rem;
+		}
+	}
 `;
 const initialState = {
 	username: "",
@@ -17,61 +30,92 @@ const initialState = {
 	companyName: "",
 };
 
-
-// const OwnerSignup = (props) => {
-// 	const [values, handleChanges, errors] = useForm(initialState);
-// }
-
 const OwnerSignup = (props) => {
+	// const [values, handleChanges, clearForm] = useForm(initialState);
+	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(values);
+		console.log(errors)
+		clearForm();
+	};
+	// const OwnerSignup = (props) => {
+	// 	const [values, handleChanges, errors] = useForm(initialState);
+	// }
+
+	const handleChanges = evt => {
+		handleChange(evt);
+		console.log(values);
+		console.log(errors);
+	}
+
+
 	return (
-		<form>
-			<label>
-				Username
+		<StyledForm onSubmit={handleSubmit}>
+			<div className="Input-pair">
+				<label htmlfor="username">
+					Username
+					</label>
 				<Input
 					type="text"
-					name="username"
-				// value={values.username}
-				// onChange={handleChanges}
+					id="username"
+					name="usernamw"
+					value={values.username}
+					onChange={handleChanges}
 				/>
-			</label>
+			</div>
 
-			<label>
-				Email
+			<div className="Input-pair">
+				<label htmlFor="email">
+					Email
+				</label>
 				<Input
 					type="email"
+					id="email"
 					name="email"
-					value={""}
-				// value={values.email}
+					value={values.email}
+					onChange={handleChanges}
 				/>
-			</label>
+			</div>
 
-			<label>
-				Password
+			<div classname="Input-pair">
+				<label htmlFor="password">
+					Password
+				</label>
 				<Input
 					type="password"
+					id="password"
 					name="password"
-					value={""}
+					value={values.password}
+					onChange={handleChange}
 				/>
-			</label>
+			</div>
 
-			<label>
-				Company Name
+			<div className="Input-pair">
+				<label htmlFor="companyname">
+					Company Name
+						</label>
 				<Input
 					type="text"
-					name="companyName"
-					value={""}
+					id="companyname"
+					name="companyname"
+					value={values.companyname}
+					onChange={handleChange}
 				/>
-			</label>
+			</div>
 
-			<Button> Submit </Button>
-			{/* <div className="errors">
+			<Button disabled={disabled}> Submit </Button>
+			<div className="errors">
 				<div>{errors.username}</div>
 				<div>{errors.email}</div>
 				<div>{errors.password}</div>
-			</div> */}
+			</div>
 
-		</form>
+		</StyledForm>
 	);
 };
+
+
 
 export default OwnerSignup;

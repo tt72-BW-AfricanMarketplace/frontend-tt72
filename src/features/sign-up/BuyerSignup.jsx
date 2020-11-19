@@ -3,7 +3,7 @@ import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
 import layout from "../layout";
-import schema from "./signupScheme";
+import schema from "./BuyerSignupSchema";
 
 const { Button } = layout;
 
@@ -17,6 +17,9 @@ const StyledForm = styled.form`
 		align-items: center;
 		justify-content: space-between;
 		width: 30rem;
+		input{
+			width: 20rem;
+		}
 	}
 `;
 
@@ -29,18 +32,19 @@ const initialState = {
 const BuyerSignup = (props) => {
 	// const [values, handleChanges, clearForm] = useForm(initialState);
 	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(values);
 		console.log(errors)
 		clearForm();
-
 	}
+
 	const handleChanges = evt => {
 		// e.preventDefault();
 		handleChange(evt);
 		console.log(values);
-		console.log(errors)
+		console.log(errors);
 	}
 
 	return (
@@ -57,6 +61,7 @@ const BuyerSignup = (props) => {
 					onChange={handleChanges}
 				/>
 			</div>
+
 			<div className="Input-pair">
 				<label htmlFor="email">
 					Email
