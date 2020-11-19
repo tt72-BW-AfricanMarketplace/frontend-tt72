@@ -24,7 +24,7 @@ export const fetchOwnerProducts = (id) => {
     return (dispatch) => {
         dispatch({ type: FETCH_OWNER_PRODUCTS_START });
 
-        client.getProductById(id)
+        client.getProductsByUserId(id)
             .then((res) => {
                 dispatch({
                     type: FETCH_OWNER_PRODUCTS_SUCCESS,
@@ -56,7 +56,9 @@ export const postOwnerProduct = (ownerId, newProduct) => {
 
                     //need payload to be all items including the new item???
                 })
+                //update window.location here
             })
+            
             .catch((err) => {
                 dispatch({
                     type: POST_OWNER_PRODUCT_FAILURE,
@@ -91,12 +93,12 @@ export const putOwnerProduct = (ownerId, prodId, productUpdate) => {
     }
 }
 
-export const deleteOwnerProduct = () => {
+export const deleteOwnerProduct = (ownerId, prodId) => {
     return (dispatch) => {
         dispatch({ type: DELETE_OWNER_PRODUCT_START })
         
         axios
-            .delete('endpoint here')
+            .delete(`https://african--market.herokuapp.com/api/products/${ownerId}/product/${prodId}`)
             .then((res) => {
                 dispatch({
                     type: DELETE_OWNER_PRODUCT_SUCCESS,

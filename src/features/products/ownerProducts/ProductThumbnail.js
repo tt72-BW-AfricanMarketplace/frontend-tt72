@@ -9,14 +9,16 @@ import { connect } from 'react-redux'
 const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
 
 const ProductThumbnail = (props) => {
+    const { product, index, setRefresh } = props;
+
+    const ownerId = 1 //change later
 
     const handleDelete = () => {
         //insert stuff here
-
-        
+        props.deleteOwnerProduct(ownerId, product.id)
+        setRefresh(true)
     }
 
-    const { product, index } = props;
     return (
         <Card primary delay={index * 125}>
 

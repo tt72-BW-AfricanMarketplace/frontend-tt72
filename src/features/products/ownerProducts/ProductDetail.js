@@ -12,7 +12,7 @@ const initialItem = {
     product_name: '',
     all_amount: 0,
     measurement_unit: '',
-    // available: 0,
+    available: 0,
     price: '',
     currency: '',
 }
@@ -21,7 +21,7 @@ const ProductDetail = (props) => {
     const { id } = useParams();
     const { isLoading, products, error } = props;
     const [inputValues, setInputValues] = useState(initialItem);
-    const userId = 1;
+    const userId = 1; ///get from cookie/token later
     const { push } = useHistory();
 
     useEffect(() => {
@@ -42,6 +42,7 @@ const ProductDetail = (props) => {
         // put functionality
 
         props.putOwnerProduct(userId, id, inputValues)
+        //update passed prop state
 
         push(`/owner/products`);
 
@@ -82,7 +83,7 @@ const ProductDetail = (props) => {
                                 value={inputValues.measurement_unit}
                             />
                         </label>
-                        {/* <label>
+                        <label>
                             Available
                         <input
                                 type='number'
@@ -90,7 +91,7 @@ const ProductDetail = (props) => {
                                 onChange={handleChange}
                                 value={inputValues.available}
                             />
-                        </label> */}
+                        </label>
                         <label>
                             Price
                         <input

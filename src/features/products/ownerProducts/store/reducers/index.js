@@ -109,21 +109,24 @@ export const ownerProductReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                error: ''
+                error: '',
+                loadNewProduct: true
                 //double check this one
             }
         case PUT_OWNER_PRODUCT_SUCCESS: 
             return {
                 ...state,
                 isLoading: false,
-                productsData: action.payload // not sure about this one
+                productsData: action.payload, // not sure about this one
+                loadNewProduct: false
                 //double check this one
             }
         case PUT_OWNER_PRODUCT_FAILURE: 
             return {
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error: action.payload,
+                loadNewProduct: false,
                 //double check this one
             }
         case DELETE_OWNER_PRODUCT_START: 

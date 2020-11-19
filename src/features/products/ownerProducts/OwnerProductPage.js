@@ -21,12 +21,15 @@ const initialItem = {
 
 const OwnerProductPage = (props) => {
     const [ addActive, setAddActive ] = useState(false)
-    const [ formItem, setFormItem ] = useState(initialItem)
+    const [formItem, setFormItem] = useState(initialItem)
+    const [refresh, setRefresh] = useState(false)
+    ///new state
     const id = 1; // fix with log in token later
 
     useEffect(() => {
         props.fetchOwnerProducts(id)
-    }, [props.loadNewProduct])
+        setRefresh(false)
+    }, [refresh, props.loadNewProduct])
 
     const handleClick = () => {
         setAddActive(!addActive)
@@ -41,11 +44,10 @@ const OwnerProductPage = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log('formItem', formItem)
 
         props.postOwnerProduct(id, formItem);
-
         setFormItem(initialItem)
+        setRefresh(true)
     }
 
     return (
@@ -147,6 +149,7 @@ const OwnerProductPage = (props) => {
                                         key={idx}
                                         product={product}
                                         index={idx}
+                                        setRefresh={setRefresh}
                                     />
 
 
