@@ -30,12 +30,19 @@ const MenuBurger = styled.div`
 	fill: var(--pText);
 `;
 
-const Nav = styled.nav`
+const NavContainer = styled.nav`
 	display: ${pr => pr.show ? "flex" : "none"};
 	width: 100vw;
 	background-color: var(--pDarker);
 	flex-flow: row nowrap;
-	justify-content: space-between;
+	justify-content: center;
+	nav {
+		display: flex;
+		width: 50%;
+		flex-flow: row nowrap;
+		justify-content: space-evenly;
+	}
+
 `;
 
 const Header = props => {
@@ -71,23 +78,25 @@ const Header = props => {
 				</div>
 			</StyledHeader>
 
-			<Nav show={navOpen}>
-				<Link to={PATHS.HOMEPAGE_PATH}>Home</Link>
-				{isLoggedIn
-					?
-					<>
-						<Link to={PATHS.PORTAL_PATH}>Info Portal</Link>
-						<Link to={PATHS.OWNER_PRODUCTS_PATH}>Owner Products</Link>
-						<Link to={PATHS.BUYER_PRODUCTS_PATH}>Buyer Products</Link>
-						<Button onClick={handleLogout}>Logout</Button>
-					</>
-					:
-					<>
-						<Link to={PATHS.LOGIN_PATH}>Login</Link>
-						<Link to={PATHS.SIGNUP_PATH}>Signup</Link>
-					</>
-				}
-			</Nav>
+			<NavContainer show={navOpen}>
+				<nav>
+					<Link to={PATHS.HOMEPAGE_PATH}>Home</Link>
+					{isLoggedIn
+						?
+						<>
+							<Link to={PATHS.PORTAL_PATH}>Info Portal</Link>
+							<Link to={PATHS.OWNER_PRODUCTS_PATH}>Owner Products</Link>
+							<Link to={PATHS.BUYER_PRODUCTS_PATH}>Buyer Products</Link>
+							<Button onClick={handleLogout}>Logout</Button>
+						</>
+						:
+						<>
+							<Link to={PATHS.LOGIN_PATH}>Login</Link>
+							<Link to={PATHS.SIGNUP_PATH}>Signup</Link>
+						</>
+					}
+				</nav>
+			</NavContainer>
 		</>
 	);
 }

@@ -14,7 +14,10 @@ const SignupWrap = styled.div`
 	border-radius: 20px;
 	display: flex;
 	flex-flow: row nowrap;
-	text-align: center;
+	margin: 6rem auto;
+	Button {
+		align-self: 1;
+	}
 `;
 
 const FormContainer = styled(Container)`
