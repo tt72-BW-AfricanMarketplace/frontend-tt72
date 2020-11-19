@@ -35,9 +35,7 @@ const buyerProductSlice = createSlice({
 		},
 		removeFromCart: (state, action) => {
 			const foundEl = state.cart.find(item => { return (item.id === action.payload) });
-			console.log(foundEl);
 			const totalToRemove = Number(foundEl?.product?.price * foundEl?.quantity);
-			console.log(totalToRemove);
 			state.totalPrice -= totalToRemove;
 			state.cart = state.cart.filter(p => {
 				return p.id !== action.payload;
