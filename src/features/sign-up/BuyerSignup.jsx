@@ -21,6 +21,9 @@ const StyledForm = styled.form`
 		align-items: center;
 		justify-content: space-between;
 		width: 30rem;
+		input {
+			width: 20rem;
+		}
 	}
 `;
 
@@ -31,7 +34,7 @@ const initialState = {
 };
 
 const BuyerSignup = (props) => {
-	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
+	const [values, errors, disabled, handleChanges, clearForm] = useFormError(initialState, schema)
 	const dispatch = useDispatch();
 	const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 	const { push } = useHistory();
@@ -46,10 +49,6 @@ const BuyerSignup = (props) => {
 		evt.preventDefault();
 		dispatch(signup(values));
 		clearForm();
-	}
-
-	const handleChanges = evt => {
-		handleChange(evt);
 	}
 
 	return (

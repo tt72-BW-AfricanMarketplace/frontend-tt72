@@ -25,8 +25,9 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk(
 	"logout/status",
 	async () => {
-		const res = await client.logout();
-		return res;
+		// const res = await client.logout();
+		// return res;
+		return 4;
 	}
 );
 

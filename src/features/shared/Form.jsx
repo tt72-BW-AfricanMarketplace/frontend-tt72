@@ -11,6 +11,17 @@ const StyledForm = styled.form`
 	align-items: center;
 `;
 
+const InputPair = styled.div`
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: space-between;
+		width: 30rem;
+		input {
+			width: 20rem;
+		}
+`;
+
 const Form = ({ fields, handleSubmit }) => {
 	let initState = {};
 	fields.forEach(field => initState[field.name] = field.initVal ? field.initVal : "");
@@ -29,7 +40,7 @@ const Form = ({ fields, handleSubmit }) => {
 				fields.map(field => {
 					const { name, type, placeholder, className } = field;
 					return (
-						<div>
+						<InputPair>
 							<label htmlFor={name}>{name}</label>
 							<Input
 								key={`${name}_${type}_${placeholder}`}
@@ -40,7 +51,7 @@ const Form = ({ fields, handleSubmit }) => {
 								className={className ? className : ""}
 								value={values[name]}
 								onChange={handleChanges} />
-						</div>
+						</InputPair>
 					);
 				})
 			}

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../login/loginSlice";
+// import { logout } from "../login/loginSlice";
+import { logout } from "../../app/store/slices/userSlice";
 import { PATHS } from "../../app/routes/routes";
 import ThemeToggler from "./ThemeToggler";
 import layout from "../layout";
@@ -38,11 +39,10 @@ const NavContainer = styled.nav`
 	justify-content: center;
 	nav {
 		display: flex;
-		width: 50%;
+		width: 100%;
 		flex-flow: row nowrap;
-		justify-content: space-evenly;
+		justify-content: center;
 	}
-
 `;
 
 const Header = props => {
