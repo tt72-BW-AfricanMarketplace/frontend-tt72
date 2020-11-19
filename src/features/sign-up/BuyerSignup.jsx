@@ -7,7 +7,7 @@ import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
 import layout from "../layout";
-import schema from "./signupScheme";
+import schema from "./BuyerSignupSchema";
 
 const { Button } = layout;
 
@@ -21,7 +21,7 @@ const StyledForm = styled.form`
 		align-items: center;
 		justify-content: space-between;
 		width: 30rem;
-		input {
+		input{
 			width: 20rem;
 		}
 	}
@@ -65,6 +65,7 @@ const BuyerSignup = (props) => {
 					onChange={handleChanges}
 				/>
 			</div>
+
 			<div className="Input-pair">
 				<label htmlFor="email">
 					Email
