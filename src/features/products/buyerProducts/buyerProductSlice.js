@@ -6,7 +6,7 @@ export const initialState = {
 	error: "",
 	cart: [],
 	totalPrice: 0,
-	product: [],
+	// product: [],
 };
 
 const buyerProductSlice = createSlice({
@@ -36,7 +36,11 @@ const buyerProductSlice = createSlice({
 		removeFromCart: (state, action) => {
 			const foundEl = state.cart.find(item => { return (item.id === action.payload) });
 			const totalToRemove = Number(foundEl?.product?.price * foundEl?.quantity);
-			state.totalPrice -= totalToRemove;
+			if (state.totalPrice - totalToRemove < 0) {
+				state.totalPrice = 0;
+			} else {
+				state.totalPrice -= totalToRemove;
+			}
 			state.cart = state.cart.filter(p => {
 				return p.id !== action.payload;
 			});

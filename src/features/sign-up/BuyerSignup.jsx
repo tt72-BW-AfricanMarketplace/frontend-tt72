@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { signupBuyer } from "./signupSlice";
+import { signup } from "./signupSlice";
 import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
@@ -34,17 +34,17 @@ const BuyerSignup = (props) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(values);
-		console.log(errors);
-		dispatch(signupBuyer(values));
+		// console.log(values);
+		// console.log(errors);
+		dispatch(signup(values));
 		clearForm();
 
 	}
 	const handleChanges = evt => {
 		// e.preventDefault();
 		handleChange(evt);
-		console.log(values);
-		console.log(errors)
+		// console.log(values);
+		// console.log(errors)
 	}
 
 	return (

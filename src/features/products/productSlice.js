@@ -27,7 +27,6 @@ export const fetchProduct = createAsyncThunk(
 export const fetchAllProducts = createAsyncThunk(
 	"products/fetchAllProducts",
 	async () => {
-		// const data = axiosAuth().get(`products`);
 		const res = await client.getAllProducts();
 		return res.data;
 	}

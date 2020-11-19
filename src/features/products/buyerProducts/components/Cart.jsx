@@ -11,6 +11,7 @@ const SCart = styled.div`
 	height: 100%;
 	display: flex;
 	flex-flow: column nowrap;
+	align-items: center;
 	h1 {
 		font-size: 2rem;
 	}
@@ -23,7 +24,6 @@ const SCart = styled.div`
 `;
 
 const SItem = styled(Card)`
-	height: 10rem;
 	margin: 0;
 	width: 100%;
 	background-color: var(--pDark);
@@ -39,6 +39,8 @@ const RemoveButton = styled(Button)`
 
 const Price = styled.div`
 	background-color: var(--pBase);
+	width: 60%;
+
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
