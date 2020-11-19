@@ -2,13 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import client from "../../../env/api/client";
 
 const user = window.localStorage.getItem("user");
+const tok = window.localStorage.getItem("token");
 
 const initialState = {
 	isLoggedIn: user ? true : false,
 	user: user ?? null,
 	status: "idle",
 	error: undefined,
-	token: undefined,
+	token: tok ?? null,
 	cart: [],
 	totalPrice: 0,
 };
@@ -24,7 +25,8 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk(
 	"logout/status",
 	async () => {
-		return 4;
+		const res = await client.logout();
+		return res;
 	}
 );
 
@@ -91,15 +93,18 @@ const userSlice = createSlice({
 			state.error = action.error?.message ?? action.error ?? "unknown";
 		},
 		[logout.pending]: (state, action) => {
+			console.log("LOGOUT PENDING", action);
 			state.status = "loading";
 		},
 		[logout.fulfilled]: (state, action) => {
+			console.log("LOGOUT FULFILLED", action);
 			window.localStorage.removeItem("token");
 			state.isLoggedIn = false;
 			state.user = null;
 			state.status = "idle";
 		},
 		[logout.rejected]: (state, action) => {
+			console.log("LOGOUT REJECTED", action);
 			state.isLoggedIn = true;
 			state.error = action.payload;
 		},

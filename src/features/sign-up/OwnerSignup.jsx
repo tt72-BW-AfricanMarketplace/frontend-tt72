@@ -1,5 +1,6 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../app/store/slices/userSlice";
 // import { signup } from "./signupSlice";
 import useFormError from "../../hooks/useFormError";
@@ -21,14 +22,17 @@ const initialState = {
 	companyName: "",
 };
 
-
-// const OwnerSignup = (props) => {
-// 	const [values, handleChanges, errors] = useForm(initialState);
-// }
-
 const OwnerSignup = (props) => {
 	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
 	const dispatch = useDispatch();
+	const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+	const { push } = useHistory();
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			push("/info-portal");
+		}
+	}, [isLoggedIn, push]);
 
 	const handleSubmit = (evt) => {
 		evt.preventDefault();

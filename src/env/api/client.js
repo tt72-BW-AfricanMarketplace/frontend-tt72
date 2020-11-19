@@ -4,8 +4,6 @@ const client = {
 	BASE_URL: "https://african--market.herokuapp.com/api/",
 }
 
-
-
 //................. AXIOS CREATORS ........................//
 client.axios = () => {
 	return axios.create({
@@ -37,6 +35,12 @@ client.signup = async (userData) => {
 	const res = await client.axios().post("auth/register", { email, password });
 	return res;
 };
+
+client.logout = async () => {
+	const res = await client.axios().get("logout");
+	return res;
+};
+
 
 
 
