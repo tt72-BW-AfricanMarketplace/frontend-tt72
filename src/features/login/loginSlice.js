@@ -25,6 +25,8 @@ export const logout = createAsyncThunk(
 		return 4;
 	});
 
+	
+
 const loginSlice = createSlice({
 	name: "login",
 	initialState,
@@ -46,19 +48,19 @@ const loginSlice = createSlice({
 			state.status = "idle";
 			state.error = action.error?.message ?? action.error ?? "unknown";
 		},
-		// [logout.pending]: (state, action) => {
-		// 	state.status = "loading";
-		// },
-		// [logout.fulfilled]: (state, action) => {
-		// 	window.localStorage.removeItem("token");
-		// 	state.isLoggedIn = false;
-		// 	state.user = null;
-		// 	state.status = "idle";
-		// },
-		// [logout.rejected]: (state, action) => {
-		// 	state.isLoggedIn = true;
-		// 	state.error = action.payload.error;
-		// }
+		[logout.pending]: (state, action) => {
+			state.status = "loading";
+		},
+		[logout.fulfilled]: (state, action) => {
+			window.localStorage.removeItem("token");
+			state.isLoggedIn = false;
+			state.user = null;
+			state.status = "idle";
+		},
+		[logout.rejected]: (state, action) => {
+			state.isLoggedIn = true;
+			state.error = action.payload;
+		}
 	}
 });
 

@@ -1,8 +1,9 @@
 // import { useForm } from "../../hooks/useForm";
-import React from "react";
-import Form from "../shared/Form";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "./loginSlice";
+import Form from "../shared/Form";
 import layout from "../layout";
 import styled from "styled-components";
 const { Container, Heading } = layout;
@@ -30,8 +31,19 @@ const loginValues = [
 ];
 
 const LoginForm = (props) => {
-	// const loginState = useSelector(state => state.login);
+	const isLoggedIn = useSelector(state => state.login.isLoggedIn);
 	const dispatch = useDispatch();
+	const { push } = useHistory();
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			push("/info-portal");
+		}
+		// else {
+		// 	push("/login")
+		// }
+	}, [isLoggedIn, push]);
+
 	const handleSubmit = (values) => {
 		console.log("FROM LOGINFORM ", values);
 		dispatch(login(values));
