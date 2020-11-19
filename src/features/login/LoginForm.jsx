@@ -2,7 +2,8 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "./loginSlice";
+// import { login } from "./loginSlice";
+import { login } from "../../app/store/slices/userSlice";
 import Form from "../shared/Form";
 import layout from "../layout";
 import styled from "styled-components";
@@ -31,7 +32,8 @@ const loginValues = [
 ];
 
 const LoginForm = (props) => {
-	const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+	// const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+	const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 	const dispatch = useDispatch();
 	const { push } = useHistory();
 

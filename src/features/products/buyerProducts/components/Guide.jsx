@@ -31,7 +31,8 @@ const Checkbox = ({ fName, handler, checked, ...props }) => {
 };
 
 const Guide = props => {
-	const allProducts = useSelector(state => state.buyerProduct.products);
+	// const allProducts = useSelector(state => state.buyerProduct.products);
+	const allProducts = useSelector(state => state.product.products);
 	const [filters, setFilters] = useState(new Set());
 	const [filteredProducts, setFilteredProducts] = useState(allProducts);
 	const firstTime = useRef(true);

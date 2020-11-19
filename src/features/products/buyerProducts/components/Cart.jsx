@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../buyerProductSlice";
+// import { removeFromCart } from "../buyerProductSlice";
+import { removeFromCart } from "../../../../app/store/slices/userSlice";
 import styled from "styled-components";
 import layout from "../../../layout";
 
@@ -68,8 +69,10 @@ const CartItem = props => {
 }
 
 const Cart = props => {
-	const cart = useSelector(state => state.buyerProduct.cart);
-	const price = useSelector(state => state.buyerProduct.totalPrice);
+	// const cart = useSelector(state => state.buyerProduct.cart);
+	// const price = useSelector(state => state.buyerProduct.totalPrice);
+	const cart = useSelector(state => state.user.cart);
+	const price = useSelector(state => state.user.totalPrice);
 	const dispatch = useDispatch();
 	const handleDeletion = (id) => {
 		dispatch(removeFromCart(id));

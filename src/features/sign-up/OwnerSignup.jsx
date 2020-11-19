@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { signup } from "./signupSlice";
+import { signup } from "../../app/store/slices/userSlice";
+// import { signup } from "./signupSlice";
 import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";

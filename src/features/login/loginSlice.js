@@ -1,6 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import axios from "axios"
-// import axiosAuth from "../../env/utils/axiosAuth";
 import client from "../../env/api/client";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -25,7 +23,7 @@ export const logout = createAsyncThunk(
 		return 4;
 	});
 
-	
+
 
 const loginSlice = createSlice({
 	name: "login",

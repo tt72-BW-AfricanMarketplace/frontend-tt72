@@ -4,8 +4,10 @@ import { ownerProductReducer } from '../../features/products/ownerProducts/store
 import buyerReducer from "../../features/products/buyerProducts/buyerProductSlice";
 import productReducer from "../../features/products/productSlice";
 import signupReducer from "../../features/sign-up/signupSlice";
+import userReducer from "./slices/userSlice";
 
 const rootReducer = combineReducers({
+	user: userReducer,
 	login: loginReducer,
 	signup: signupReducer,
 	product: productReducer,

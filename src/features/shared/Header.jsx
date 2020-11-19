@@ -47,7 +47,8 @@ const NavContainer = styled.nav`
 
 const Header = props => {
 	const dispatch = useDispatch();
-	const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+	// const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+	const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 	const [navOpen, setNavOpen] = useState(false);
 
 	const handleLogout = () => {
