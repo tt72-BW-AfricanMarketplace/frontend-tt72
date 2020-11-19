@@ -28,7 +28,7 @@ const OwnerProductPage = (props) => {
     useEffect(() => {
         props.fetchOwnerProducts(id)
         setRefresh(false)
-    }, [refresh])
+    }, [props.loadNewProduct, refresh])
 
     const handleClick = () => {
         setAddActive(!addActive)
