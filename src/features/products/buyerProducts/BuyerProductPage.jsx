@@ -6,7 +6,7 @@ import Guide from "./components/Guide";
 import BProductCard from "./components/BProductCard";
 import Cart from "./components/Cart";
 import SplitPane from "./components/SplitPane";
-import { fetchProduct } from "../productSlice";
+import { fetchAllProducts } from "../productSlice";
 
 const Page = styled.div`
 	display: flex;
@@ -34,15 +34,20 @@ const Banner = styled.div`
 		text-decoration: none;
 	}
 `;
+
+const ProductGallery = styled.div`
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+`;
+
 const BuyerProductPage = props => {
 	const products = useSelector(state => state.product?.products ?? []);
-	// const [res, setRes] = useState({});
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchProduct(1));
-		// dispatch(fetchAllProducts());
-	}, [dispatch])
+		dispatch(fetchAllProducts());
+	}, [dispatch]);
 
 	return (
 		<Page>
@@ -56,9 +61,13 @@ const BuyerProductPage = props => {
 						<Guide key="left" />
 					}
 					middle={
-						products.map(product => {
-							return <BProductCard key={product.id} product={product} />
-						})
+						<ProductGallery>
+							{
+								products.map(product => {
+									return <BProductCard key={product.id} product={product} />
+								})
+							}
+						</ProductGallery>
 					}
 					right={
 						<Cart />

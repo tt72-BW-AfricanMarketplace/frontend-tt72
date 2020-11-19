@@ -1,6 +1,8 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { signupBuyer } from "./signupSlice";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+// import { signup } from "./signupSlice";
+import { signup } from "../../app/store/slices/userSlice";
 import useFormError from "../../hooks/useFormError";
 import Input from "../shared/Input";
 import styled from "styled-components";
@@ -19,6 +21,9 @@ const StyledForm = styled.form`
 		align-items: center;
 		justify-content: space-between;
 		width: 30rem;
+		input {
+			width: 20rem;
+		}
 	}
 `;
 
@@ -29,22 +34,21 @@ const initialState = {
 };
 
 const BuyerSignup = (props) => {
-	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
+	const [values, errors, disabled, handleChanges, clearForm] = useFormError(initialState, schema)
 	const dispatch = useDispatch();
+	const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+	const { push } = useHistory();
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(values);
-		console.log(errors);
-		dispatch(signupBuyer(values));
+	useEffect(() => {
+		if (isLoggedIn) {
+			push("/info-portal");
+		}
+	}, [isLoggedIn, push])
+
+	const handleSubmit = (evt) => {
+		evt.preventDefault();
+		dispatch(signup(values));
 		clearForm();
-
-	}
-	const handleChanges = evt => {
-		// e.preventDefault();
-		handleChange(evt);
-		console.log(values);
-		console.log(errors)
 	}
 
 	return (

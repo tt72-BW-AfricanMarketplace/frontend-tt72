@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../buyerProductSlice";
+// import { removeFromCart } from "../buyerProductSlice";
+import { removeFromCart } from "../../../../app/store/slices/userSlice";
 import styled from "styled-components";
 import layout from "../../../layout";
 
@@ -11,6 +12,7 @@ const SCart = styled.div`
 	height: 100%;
 	display: flex;
 	flex-flow: column nowrap;
+	align-items: center;
 	h1 {
 		font-size: 2rem;
 	}
@@ -23,7 +25,6 @@ const SCart = styled.div`
 `;
 
 const SItem = styled(Card)`
-	height: 10rem;
 	margin: 0;
 	width: 100%;
 	background-color: var(--pDark);
@@ -39,6 +40,8 @@ const RemoveButton = styled(Button)`
 
 const Price = styled.div`
 	background-color: var(--pBase);
+	width: 60%;
+
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
@@ -66,8 +69,10 @@ const CartItem = props => {
 }
 
 const Cart = props => {
-	const cart = useSelector(state => state.buyerProduct.cart);
-	const price = useSelector(state => state.buyerProduct.totalPrice);
+	// const cart = useSelector(state => state.buyerProduct.cart);
+	// const price = useSelector(state => state.buyerProduct.totalPrice);
+	const cart = useSelector(state => state.user.cart);
+	const price = useSelector(state => state.user.totalPrice);
 	const dispatch = useDispatch();
 	const handleDeletion = (id) => {
 		dispatch(removeFromCart(id));
