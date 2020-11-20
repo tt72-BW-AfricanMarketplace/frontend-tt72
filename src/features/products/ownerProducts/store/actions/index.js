@@ -62,10 +62,7 @@ export const postOwnerProduct = (ownerId, newProduct) => {
 				dispatch({
 					type: POST_OWNER_PRODUCT_SUCCESS,
 					payload: res.data
-
-					//need payload to be all items including the new item???
 				})
-				//update window.location here
 			})
 
 			.catch((err) => {
@@ -92,10 +89,7 @@ export const putOwnerProduct = (ownerId, prodId, productUpdate) => {
 			.then((res) => {
 				dispatch({
 					type: PUT_OWNER_PRODUCT_SUCCESS,
-
-
 					payload: res.data
-					//need payload to be whole state including updated item?
 				})
 			})
 			.catch((err) => {
@@ -110,12 +104,6 @@ export const putOwnerProduct = (ownerId, prodId, productUpdate) => {
 	}
 
 }
-
-// export const resetPutStatus = () => {
-//     return (dispatch) => {
-//         dispatch({type: RESET_PUT_STATUS})
-//     }
-// }
 
 export const deleteOwnerProduct = (ownerId, prodId) => {
 	return (dispatch) => {

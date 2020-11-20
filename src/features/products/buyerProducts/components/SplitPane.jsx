@@ -8,10 +8,7 @@ const Parent = styled.div`
 	width: 100vw;
 	height: 100%;
 	.left {
-		width: 15%;
-	}
-	.middle {
-		width: 65%;
+		width: 80%;
 	}
 	.right {
 		width: 20%;
