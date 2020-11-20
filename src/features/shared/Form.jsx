@@ -28,7 +28,6 @@ const Form = ({ fields, handleSubmit }) => {
 	const [values, handleChanges, clearForm] = useForm(initState);
 
 	const handleSubmitLocal = (evt) => {
-		console.log("FROM FORM ", values);
 		evt.preventDefault();
 		handleSubmit(values);
 		clearForm();

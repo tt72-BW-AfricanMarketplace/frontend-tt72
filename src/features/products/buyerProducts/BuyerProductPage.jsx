@@ -2,37 +2,21 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Header from "../../shared/Header";
-import Guide from "./components/Guide";
+// import Guide from "./components/Guide";
 import BProductCard from "./components/BProductCard";
 import Cart from "./components/Cart";
 import SplitPane from "./components/SplitPane";
 import { fetchAllProducts } from "../productSlice";
 
 const Page = styled.div`
+	height: 100vh;
 	display: flex;
 	flex-flow: column nowrap;
+	justify-content: space-evenly;
 `;
 
 const Main = styled.div`
-	height: 76vh;
-`;
-
-const Banner = styled.div`
-	margin: 3rem 0 0;
-	border-bottom: 1px solid var(--pLight);
-	width: 100vw;
-	background-color: var(--pDark);
-	height: 10rem;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: space-evenly;
-	align-items: center;
-	h1 {
-		display: block;
-		color: var(--pText);
-		font-size: 2rem;
-		text-decoration: none;
-	}
+	height: 100%;
 `;
 
 const ProductGallery = styled.div`
@@ -52,15 +36,9 @@ const BuyerProductPage = props => {
 	return (
 		<Page>
 			<Header />
-			<Banner>
-				<h1>Buyer Products Page</h1>
-			</Banner>
 			<Main>
 				<SplitPane
 					left={
-						<Guide key="left" />
-					}
-					middle={
 						<ProductGallery>
 							{
 								products.map(product => {

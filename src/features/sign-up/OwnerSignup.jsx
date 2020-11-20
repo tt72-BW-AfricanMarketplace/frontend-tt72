@@ -35,36 +35,33 @@ const initialState = {
 };
 
 const OwnerSignup = (props) => {
-	// const [values, handleChanges, clearForm] = useForm(initialState);
-	const [values, errors, disabled, handleChange, clearForm] = useFormError(initialState, schema)
+	const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+	const dispatch = useDispatch();
+	const { push } = useHistory();
+	const [values, errors, disabled, handleChanges, clearForm] = useFormError(initialState, schema)
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(values);
-		console.log(errors)
+		dispatch(signup(values));
 		clearForm();
 	};
-	// const OwnerSignup = (props) => {
-	// 	const [values, handleChanges, errors] = useForm(initialState);
-	// }
 
-	const handleChanges = evt => {
-		handleChange(evt);
-		console.log(values);
-		console.log(errors);
-	}
-
+	useEffect(() => {
+		if (isLoggedIn) {
+			push("/info-portal");
+		}
+	}, [isLoggedIn, push])
 
 	return (
 		<StyledForm onSubmit={handleSubmit}>
 			<div className="Input-pair">
-				<label htmlfor="username">
+				<label htmlFor="username">
 					Username
 					</label>
 				<Input
 					type="text"
 					id="username"
-					name="usernamw"
+					name="username"
 					value={values.username}
 					onChange={handleChanges}
 				/>
@@ -92,20 +89,20 @@ const OwnerSignup = (props) => {
 					id="password"
 					name="password"
 					value={values.password}
-					onChange={handleChange}
+					onChange={handleChanges}
 				/>
 			</div>
 
 			<div className="Input-pair">
-				<label htmlFor="companyname">
+				<label htmlFor="companyName">
 					Company Name
 						</label>
 				<Input
 					type="text"
-					id="companyname"
-					name="companyname"
+					id="companyName"
+					name="companyName"
 					value={values.companyName}
-					onChange={handleChange}
+					onChange={handleChanges}
 				/>
 			</div>
 
@@ -114,6 +111,7 @@ const OwnerSignup = (props) => {
 				<div>{errors.username}</div>
 				<div>{errors.email}</div>
 				<div>{errors.password}</div>
+				{/* <div>{errors.companyName}</div> */}
 			</div>
 
 		</StyledForm>

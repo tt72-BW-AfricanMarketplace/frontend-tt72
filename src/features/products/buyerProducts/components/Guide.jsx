@@ -44,7 +44,7 @@ const Guide = props => {
 		} else {
 			if (filters.size === 0) {
 				setFilteredProducts(allProducts);
-				console.log(filters);
+				// console.log(filters);
 				return;
 			} else {
 				const updatedProducts = allProducts.filter(product =>
