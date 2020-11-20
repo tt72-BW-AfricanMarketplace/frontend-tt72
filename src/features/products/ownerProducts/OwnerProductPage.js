@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux';
 
-import { fetchOwnerProducts, postOwnerProduct } from './store/actions' 
+import { fetchOwnerProducts, postOwnerProduct, resetPutStatus } from './store/actions' 
 
 import layout from '../../layout';
 import ProductThumbnail from './ProductThumbnail';
@@ -14,7 +14,7 @@ const initialItem = {
     product_name: '',
     all_amount: 0,
     measurement_unit: '',
-    // available_amount: 0,
+    available_amount: 0,
     price: '',
     currency: '',
 }
@@ -25,10 +25,20 @@ const OwnerProductPage = (props) => {
     const [refresh, setRefresh] = useState(false)
     const id = 1; // fix with log in token later
 
+
     useEffect(() => {
         props.fetchOwnerProducts(id)
         setRefresh(false)
-    }, [props.loadNewProduct, refresh])
+
+    }, [refresh])
+
+    useEffect(() => {
+        
+        props.fetchOwnerProducts(id)
+
+    }, [])
+    
+
 
     const handleClick = () => {
         setAddActive(!addActive)
@@ -101,7 +111,7 @@ const OwnerProductPage = (props) => {
                                                 value={formItem.measurement_unit}
                                             />
                                         </label>
-                                        {/* <label>
+                                        <label>
                                             Available
                                             <input
                                                 type='number'
@@ -109,7 +119,7 @@ const OwnerProductPage = (props) => {
                                                 onChange={handleChange}
                                                 value={formItem.available_amount}
                                             />
-                                        </label> */}
+                                        </label>
                                         <label>
                                             Price
                                             <input
@@ -166,13 +176,13 @@ const OwnerProductPage = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    // console.log('state from page',state.ownerProduct.productsData)
     return {
         isLoading: state.ownerProduct.isLoading,
         products: state.ownerProduct.productsData,
         error: state.ownerProduct.error,
-        loadNewProduct: state.ownerProduct.loadNewProduct
+        loadNewProduct: state.ownerProduct.loadNewProduct,
+        putLoadingProduct: state.ownerProduct.putLoadingProduct
     }
 }
 
-export default connect(mapStateToProps, { fetchOwnerProducts, postOwnerProduct })(OwnerProductPage)
+export default connect(mapStateToProps, { fetchOwnerProducts, postOwnerProduct, resetPutStatus })(OwnerProductPage)

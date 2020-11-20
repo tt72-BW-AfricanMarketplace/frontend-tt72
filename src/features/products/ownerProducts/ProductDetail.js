@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import layout from '../../layout';
 import Header from "../../shared/Header";
-import { putOwnerProduct } from './store/actions';
+import { putOwnerProduct, resetPutStatus } from './store/actions';
 
 
-const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
+const { Button, Link, Flex } = layout;
 
 const initialItem = {
     product_name: '',
@@ -19,7 +19,7 @@ const initialItem = {
 
 const ProductDetail = (props) => {
     const { id } = useParams();
-    const { isLoading, products, error } = props;
+    const { products } = props;
     const [inputValues, setInputValues] = useState(initialItem);
     const userId = 1; ///get from cookie/token later
     const { push } = useHistory();
@@ -39,16 +39,18 @@ const ProductDetail = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        // put functionality
-
         props.putOwnerProduct(userId, id, inputValues)
-        //update passed prop state
-
-
-        push(`/owner/products`);
-
 
     }
+
+    useEffect(() => {
+        if (props.putLoadingProduct === 'success') {
+            push(`/owner/products`);
+            props.resetPutStatus()
+        }
+
+    }, [props.putLoadingProduct])
+
 
     return (
         <div>
@@ -129,9 +131,10 @@ const mapStateToProps = (state) => {
         isLoading: state.ownerProduct.isLoading,
         products: state.ownerProduct.productsData,
         error: state.ownerProduct.error,
-        loadNewProduct: state.ownerProduct.loadNewProduct
+        loadNewProduct: state.ownerProduct.loadNewProduct,
+        putLoadingProduct: state.ownerProduct.putLoadingProduct
     }
 }
 
-export default connect(mapStateToProps, { putOwnerProduct })(ProductDetail)
+export default connect(mapStateToProps, { putOwnerProduct, resetPutStatus })(ProductDetail)
 

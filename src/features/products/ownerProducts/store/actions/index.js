@@ -11,8 +11,10 @@ export const POST_OWNER_PRODUCT_SUCCESS = 'POST_OWNER_PRODUCT_START';
 export const POST_OWNER_PRODUCT_FAILURE = 'POST_OWNER_PRODUCT_START';
 
 export const PUT_OWNER_PRODUCT_START = 'PUT_OWNER_PRODUCT_START';
-export const PUT_OWNER_PRODUCT_SUCCESS = 'PUT_OWNER_PRODUCT_START';
-export const PUT_OWNER_PRODUCT_FAILURE = 'PUT_OWNER_PRODUCT_START';
+export const PUT_OWNER_PRODUCT_SUCCESS = 'PUT_OWNER_PRODUCT_SUCCESS';
+export const PUT_OWNER_PRODUCT_FAILURE = 'PUT_OWNER_PRODUCT_FAILURE';
+
+export const RESET_PUT_STATUS = 'RESET_PUT_STATUS'
 
 export const DELETE_OWNER_PRODUCT_START = 'DELETE_OWNER_PRODUCT_START';
 export const DELETE_OWNER_PRODUCT_SUCCESS = 'DELETE_OWNER_PRODUCT_START';
@@ -76,10 +78,11 @@ export const putOwnerProduct = (ownerId, prodId, productUpdate) => {
             .put(`https://african--market.herokuapp.com/api/products/${ownerId}/product/${prodId}`, productUpdate)
             //Convert to using client.js later
             .then((res) => {
-                // console.log('res.data from putOwnerProduct', res.data)
+                console.log('res.data from putOwnerProduct', res.data)
                 dispatch({
                     type: PUT_OWNER_PRODUCT_SUCCESS,
                     
+
                     payload: res.data
                     //need payload to be whole state including updated item?
                 })
@@ -90,6 +93,13 @@ export const putOwnerProduct = (ownerId, prodId, productUpdate) => {
                     payload: err.message
                 })
             })
+    }
+
+}
+
+export const resetPutStatus = () => {
+    return (dispatch) => {
+        dispatch({type: RESET_PUT_STATUS})
     }
 }
 
