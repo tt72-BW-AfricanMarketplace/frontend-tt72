@@ -6,7 +6,7 @@ import Header from "../../shared/Header";
 import { putOwnerProduct, resetPutStatus } from './store/actions';
 
 
-const { Button, Link, Flex } = layout;
+const {  Container, Button, Link, Flex } = layout;
 
 const initialItem = {
     product_name: '',
