@@ -1,12 +1,12 @@
-import axios from "axios";
+// import axios from "axios";
 
-const setJwt = (tok) => {
-	console.log(tok);
-}
-export const getJwt = async () => {
-	const { data } = await axios.get(`/jwt`);
-	setJwt(data.token);
-}
+// const setJwt = (tok) => {
+// 	console.log(tok);
+// }
+// export const getJwt = async () => {
+// 	const { data } = await axios.get(`/jwt`);
+// 	setJwt(data.token);
+// }
 
 // FOR BACKEND — in server.js
 // app.get('/jwt', (req, res) => {

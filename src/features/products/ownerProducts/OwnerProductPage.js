@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { usePrevState, useDeepCompare } from "../../../hooks/usePrevState";
 
 import {
 	fetchOwnerProducts as fetchOwnerProductsAction,
 	postOwnerProduct as postOwnerProductAction,
-	// resetPutStatus as resetPutStatusAction
 } from './store/actions'
 
 import layout from '../../layout';
@@ -77,67 +75,22 @@ const initialItem = {
 	currency: '',
 };
 
-const isObject = (object) => {
-	return (object !== null && typeof object === "object");
-}
-const deepEqual = (object1, object2) => {
-	if (!object1 && !object2) {
-		return true;
-	} else if ((!object1 && object2) || (object1 && !object2)) {
-		return false;
-	}
-	const keys1 = Object.keys(object1);
-	const keys2 = Object.keys(object2);
-	if (keys1.length !== keys2.length) {
-		return false;
-	};
-	for (const key of keys1) {
-		const value1 = object1[key];
-		const value2 = object2[key];
-		const areObjects = isObject(value1) && isObject(value2);
-		if ((areObjects && !deepEqual(value1, value2)) || (!areObjects && value1 !== value2)) {
-			return false;
-		}
-	}
-	return true;
-}
 
 const OwnerProductPage = (props) => {
-	const { fetchOwnerProducts, postOwnerProduct, products, postStatus } = props;
-	const prevProducts = usePrevState(products);
-	// const deepEqual = useDeepCompare();
-	const [addActive, setAddActive] = useState(false)
-	const [formItem, setFormItem] = useState(initialItem)
-	const [refresh, setRefresh] = useState(true)
+	const { fetchOwnerProducts, postOwnerProduct, products, postStatus, deleteStatus } = props;
+	const [addActive, setAddActive] = useState(false);
+	const [formItem, setFormItem] = useState(initialItem);
 	const id = 1; // fix with log in token later
 
-	// useEffect(() => {
-	// 	if (refresh) {
-	// 		fetchOwnerProducts(id)
-	// 		setRefresh(false)
-	// 	}
-	// }, [refresh, fetchOwnerProducts]);
+	useEffect(() => {
+		fetchOwnerProducts(id);
+	}, [id, fetchOwnerProducts]);
 
 	useEffect(() => {
-		if (postStatus === "success") {
+		if (postStatus === "success" || deleteStatus === "success") {
 			fetchOwnerProducts(id);
 		}
-		// console.log({ products, prevProducts });
-		// if (deepEqual(products, prevProducts)) {
-		// 	console.log("DEEP EQUAL")
-		// } else {
-		// 	console.log("DEEP NOT EQUAL");
-		// 	fetchOwnerProducts(id);
-		// }
-		// if (products !== prevProducts) {
-		// 	// fetchOwnerProducts(id);
-		// }
-		// }, [products, prevProducts, fetchOwnerProducts]);
-	}, [fetchOwnerProducts, postStatus]);
-
-	// useEffect(() => {
-	// 	fetchOwnerProducts(id)
-	// }, [fetchOwnerProducts])
+	}, [fetchOwnerProducts, postStatus, deleteStatus]);
 
 	const handleClick = () => {
 		setAddActive(!addActive)
@@ -155,7 +108,6 @@ const OwnerProductPage = (props) => {
 		setAddActive(false);
 		postOwnerProduct(id, formItem);
 		setFormItem(initialItem);
-		// setRefresh(true);
 	}
 
 	return (
@@ -249,13 +201,12 @@ const OwnerProductPage = (props) => {
 
 					<div className="right">
 						{
-							props.products.map((product, idx) => {
+							products.map((product, idx) => {
 								return (
 									<ProductThumbnail
 										key={idx}
 										product={product}
 										index={idx}
-										setRefresh={setRefresh}
 									/>
 								)
 							})
@@ -276,6 +227,7 @@ const mapStateToProps = (state) => {
 		error: state.ownerProduct.error,
 		loadNewProduct: state.ownerProduct.loadNewProduct,
 		postStatus: state.ownerProduct.postStatus,
+		deleteStatus: state.ownerProduct.deleteStatus,
 		putLoadingProduct: state.ownerProduct.putLoadingProduct
 	}
 }

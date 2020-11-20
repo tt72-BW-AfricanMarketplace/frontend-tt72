@@ -53,14 +53,12 @@ export const fetchOwnerProducts = (id) => {
 
 export const postOwnerProduct = (ownerId, newProduct) => {
 	return (dispatch) => {
-		console.log('postOwnerProduct working')
 		dispatch({ type: POST_OWNER_PRODUCT_START })
 
 		axios
 			.post(`https://african--market.herokuapp.com/api/products/${ownerId}`, newProduct)
 			//Convert to using client.js later
 			.then((res) => {
-				console.log('res.data from postOwnerProduct', res.data)
 				dispatch({
 					type: POST_OWNER_PRODUCT_SUCCESS,
 					payload: res.data
@@ -92,7 +90,6 @@ export const putOwnerProduct = (ownerId, prodId, productUpdate) => {
 			.put(`https://african--market.herokuapp.com/api/products/${ownerId}/product/${prodId}`, productUpdate)
 			//Convert to using client.js later
 			.then((res) => {
-				console.log('res.data from putOwnerProduct', res.data)
 				dispatch({
 					type: PUT_OWNER_PRODUCT_SUCCESS,
 

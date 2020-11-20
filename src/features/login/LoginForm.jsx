@@ -44,7 +44,7 @@ const LoginForm = (props) => {
 	}, [isLoggedIn, push]);
 
 	const handleSubmit = (values) => {
-		console.log("FROM LOGINFORM ", values);
+		// console.log("FROM LOGINFORM ", values);
 		dispatch(login(values));
 	}
 	return (

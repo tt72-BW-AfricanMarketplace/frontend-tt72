@@ -68,18 +68,16 @@ const initialItem = {
 
 const ProductDetail = (props) => {
 	const { id } = useParams();
-	const { products } = props;
+	const { putLoadingProduct, putOwnerProduct, products } = props;
 	const [inputValues, setInputValues] = useState(initialItem);
 	const userId = 1; ///get from cookie/token later
 	const { push } = useHistory();
-	// const { putLoadingProduct, resetPutStatus, putOwnerProduct } = props;
-	const { putLoadingProduct, putOwnerProduct } = props;
 
 	useEffect(() => {
 		// eslint-disable-next-line eqeqeq
 		let product = products.find(p => p.id == id)
 		setInputValues(product)
-	}, [])
+	}, [id, products])
 
 	const handleChange = e => {
 		setInputValues({
@@ -96,9 +94,7 @@ const ProductDetail = (props) => {
 	useEffect(() => {
 		if (putLoadingProduct === 'success') {
 			push(`/owner/products`);
-			// resetPutStatus()
 		}
-		// }, [putLoadingProduct, push, resetPutStatus])
 	}, [putLoadingProduct, push])
 
 

@@ -94,18 +94,15 @@ const userSlice = createSlice({
 			state.error = action.error?.message ?? action.error ?? "unknown";
 		},
 		[logout.pending]: (state, action) => {
-			console.log("LOGOUT PENDING", action);
 			state.status = "loading";
 		},
 		[logout.fulfilled]: (state, action) => {
-			console.log("LOGOUT FULFILLED", action);
 			window.localStorage.removeItem("token");
 			state.isLoggedIn = false;
 			state.user = null;
 			state.status = "idle";
 		},
 		[logout.rejected]: (state, action) => {
-			console.log("LOGOUT REJECTED", action);
 			state.isLoggedIn = true;
 			state.error = action.payload;
 		},
