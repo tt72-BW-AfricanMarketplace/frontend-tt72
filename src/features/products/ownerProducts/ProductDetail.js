@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import layout from '../../layout';
 import Header from "../../shared/Header";
+import { putOwnerProduct, resetPutStatus } from './store/actions';
 
 
-const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
+const {  Container, Button, Link, Flex } = layout;
 
 const initialItem = {
-    item_name: '',
-    amount: 0,
-    unit: '',
+    product_name: '',
+    all_amount: 0,
+    measurement_unit: '',
     available: 0,
     price: '',
     currency: '',
@@ -18,8 +19,10 @@ const initialItem = {
 
 const ProductDetail = (props) => {
     const { id } = useParams();
-    const { isLoading, products, error } = props;
+    const { products } = props;
     const [inputValues, setInputValues] = useState(initialItem);
+    const userId = 1; ///get from cookie/token later
+    const { push } = useHistory();
 
     useEffect(() => {
         let product = products.find(product => product.id == id)
@@ -36,8 +39,18 @@ const ProductDetail = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        // put functionality
+        props.putOwnerProduct(userId, id, inputValues)
+
     }
+
+    useEffect(() => {
+        if (props.putLoadingProduct === 'success') {
+            push(`/owner/products`);
+            props.resetPutStatus()
+        }
+
+    }, [props.putLoadingProduct])
+
 
     return (
         <div>
@@ -50,27 +63,27 @@ const ProductDetail = (props) => {
                             Item Name
                         <input
                                 type='text'
-                                name='item_name'
+                                name='product_name'
                                 onChange={handleChange}
-                                value={inputValues.item_name}
+                                value={inputValues.product_name}
                             />
                         </label>
                         <label>
                             Amount
                         <input
                                 type='number'
-                                name='amount'
+                                name='all_amount'
                                 onChange={handleChange}
-                                value={inputValues.amount}
+                                value={inputValues.all_amount}
                             />
                         </label>
                         <label>
                             Unit
                         <input
                                 type='text'
-                                name='unit'
+                                name='measurement_unit'
                                 onChange={handleChange}
-                                value={inputValues.unit}
+                                value={inputValues.measurement_unit}
                             />
                         </label>
                         <label>
@@ -118,9 +131,10 @@ const mapStateToProps = (state) => {
         isLoading: state.ownerProduct.isLoading,
         products: state.ownerProduct.productsData,
         error: state.ownerProduct.error,
-        loadNewProduct: state.ownerProduct.loadNewProduct
+        loadNewProduct: state.ownerProduct.loadNewProduct,
+        putLoadingProduct: state.ownerProduct.putLoadingProduct
     }
 }
 
-export default connect(mapStateToProps, { })(ProductDetail)
+export default connect(mapStateToProps, { putOwnerProduct, resetPutStatus })(ProductDetail)
 

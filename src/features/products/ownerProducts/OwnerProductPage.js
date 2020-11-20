@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux';
-import { fetchOwnerProducts } from './store/actions' 
+
+import { fetchOwnerProducts, postOwnerProduct, resetPutStatus } from './store/actions' 
+
 import layout from '../../layout';
 import ProductThumbnail from './ProductThumbnail';
 import Header from "../../shared/Header";
@@ -9,17 +11,34 @@ const { Heading, Container, Button, Link, Flex, Column, Card } = layout;
 
 
 const initialItem = {
-    item_name: '',
-    amount: 0,
-    unit: '',
-    available: 0,
+    product_name: '',
+    all_amount: 0,
+    measurement_unit: '',
+    available_amount: 0,
     price: '',
     currency: '',
 }
 
 const OwnerProductPage = (props) => {
     const [ addActive, setAddActive ] = useState(false)
-    const [ formItem, setFormItem ] = useState(initialItem)
+    const [formItem, setFormItem] = useState(initialItem)
+    const [refresh, setRefresh] = useState(false)
+    const id = 1; // fix with log in token later
+
+
+    useEffect(() => {
+        props.fetchOwnerProducts(id)
+        setRefresh(false)
+
+    }, [refresh])
+
+    useEffect(() => {
+        
+        props.fetchOwnerProducts(id)
+
+    }, [])
+    
+
 
     const handleClick = () => {
         setAddActive(!addActive)
@@ -35,7 +54,9 @@ const OwnerProductPage = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        // add functionality
+        props.postOwnerProduct(id, formItem);
+        setFormItem(initialItem)
+        setRefresh(true)
     }
 
     return (
@@ -67,36 +88,36 @@ const OwnerProductPage = (props) => {
                                             Item Name
                                             <input
                                                 type='text'
-                                                name='item_name'
+                                                name='product_name'
                                                 onChange={handleChange}
-                                                value={formItem.item_name}
+                                                value={formItem.product_name}
                                             />
                                         </label>
                                         <label>
                                             Amount
                                             <input
                                                 type='number'
-                                                name='amount'
+                                                name='all_amount'
                                                 onChange={handleChange}
-                                                value={formItem.amount}
+                                                value={formItem.all_amount}
                                             />
                                         </label>
                                         <label>
                                             Unit
                                             <input
                                                 type='text'
-                                                name='unit'
+                                                name='measurement_unit'
                                                 onChange={handleChange}
-                                                value={formItem.unit}
+                                                value={formItem.measurement_unit}
                                             />
                                         </label>
                                         <label>
                                             Available
                                             <input
                                                 type='number'
-                                                name='available'
+                                                name='available_amount'
                                                 onChange={handleChange}
-                                                value={formItem.available}
+                                                value={formItem.available_amount}
                                             />
                                         </label>
                                         <label>
@@ -137,6 +158,7 @@ const OwnerProductPage = (props) => {
                                         key={idx}
                                         product={product}
                                         index={idx}
+                                        setRefresh={setRefresh}
                                     />
 
 
@@ -154,13 +176,13 @@ const OwnerProductPage = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    // console.log('state from page',state.ownerProduct.productsData)
     return {
         isLoading: state.ownerProduct.isLoading,
         products: state.ownerProduct.productsData,
         error: state.ownerProduct.error,
-        loadNewProduct: state.ownerProduct.loadNewProduct
+        loadNewProduct: state.ownerProduct.loadNewProduct,
+        putLoadingProduct: state.ownerProduct.putLoadingProduct
     }
 }
 
-export default connect(mapStateToProps, { fetchOwnerProducts })(OwnerProductPage)
+export default connect(mapStateToProps, { fetchOwnerProducts, postOwnerProduct, resetPutStatus })(OwnerProductPage)

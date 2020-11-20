@@ -5,6 +5,13 @@ import {
     POST_OWNER_PRODUCT_START,
     POST_OWNER_PRODUCT_SUCCESS,
     POST_OWNER_PRODUCT_FAILURE,
+    PUT_OWNER_PRODUCT_START,
+    PUT_OWNER_PRODUCT_SUCCESS,
+    PUT_OWNER_PRODUCT_FAILURE,
+    DELETE_OWNER_PRODUCT_START,
+    DELETE_OWNER_PRODUCT_SUCCESS,
+    DELETE_OWNER_PRODUCT_FAILURE,
+    RESET_PUT_STATUS,
 } from '../actions'
 
 const initialState = {
@@ -52,7 +59,8 @@ const initialState = {
         },
     ],
     error: '',
-    loadNewProduct: false
+    loadNewProduct: false,
+    putLoadingProduct: 'idle',
 }
 
 export const ownerProductReducer = (state = initialState, action) => {
@@ -74,6 +82,96 @@ export const ownerProductReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case POST_OWNER_PRODUCT_START: 
+            return {
+                ...state,
+                isLoading: true, 
+                error: '',
+                loadNewProduct: true,
+                //double check this one
+            }
+        case POST_OWNER_PRODUCT_SUCCESS: 
+            return {
+                ...state,
+                isLoading: false,
+                productsData: action.payload, //Not sure about this one
+                loadNewProduct: false,
+                //double check this one
+            }
+        case POST_OWNER_PRODUCT_FAILURE: 
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload,
+                loadNewProduct: false,
+                //double check this one
+            }
+        case PUT_OWNER_PRODUCT_START: 
+            return {
+                ...state,
+                // isLoading: true,
+                error: '',
+                putLoadingProduct: 'pending'
+                //double check this one
+            }
+        case PUT_OWNER_PRODUCT_SUCCESS: 
+            console.log('action.payload.id from put owner',action.payload.id)
+
+            let newProductsArray = [...state.productsData].find(product => product.id === action.payload.id)
+
+
+            console.log('newProductsArray',newProductsArray)
+            return {
+                ...state,
+                // isLoading: false,
+                productsData: [
+                    ...state.productsData.slice(
+                        action.payload.id,
+                        0,
+                        action.payload)
+                ],
+
+                
+                // productsData: [
+                //     ...state.productsData,
+                //    [ action.payload.id] = action.payload
+                // ], // not sure about this one
+                putLoadingProduct: 'success'
+                //double check this one
+            }
+        case PUT_OWNER_PRODUCT_FAILURE: 
+            return {
+                ...state,
+                // isLoading: false,
+                error: action.payload,
+                putLoadingProduct: 'failure',
+                //double check this one
+            }
+        case RESET_PUT_STATUS:
+            return {
+                ...state,
+                putLoadingProduct: 'idle'
+            }
+        case DELETE_OWNER_PRODUCT_START: 
+            return {
+                ...state,
+                isLoading: true,
+                err: ''
+            }
+        case DELETE_OWNER_PRODUCT_SUCCESS: 
+            return {
+                ...state,
+                isLoading: false,
+                productsData: action.payload
+                // double check this one
+            }
+        case DELETE_OWNER_PRODUCT_FAILURE: 
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+                //double check this one
             }
         default:
             return state;
